@@ -1,0 +1,10 @@
+.stop-name {
+	font-family: var(--bold);
+	font-size: 40px;
+	&.stop-name--eng {
+		font-family: var(--medium);
+		font-weight: 500;
+		font-size: 28px;
+		line-height: 150%;
+	}
+}
