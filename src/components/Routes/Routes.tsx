@@ -1,6 +1,10 @@
-import ArrivalTime from "../ArrivalTIme/ArrivalTime";
+import { useId } from "react";
+
+import Stop from "../Stop/Stop";
 import "./Routes.scss";
+
 const Routes = () => {
+	const key = useId();
 	const stops = [
 		{
 			name: {
@@ -26,9 +30,9 @@ const Routes = () => {
 	];
 	return (
 		<div className="routes">
-			<ArrivalTime time="2" />
-			<ArrivalTime time="8" />
-			<ArrivalTime time="15" />
+			{stops.map((stop) => {
+				return <Stop key={key} time={stop.time} name={stop.name} />;
+			})}
 		</div>
 	);
 };

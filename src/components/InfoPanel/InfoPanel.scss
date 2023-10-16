@@ -1,0 +1,20 @@
+.panel {
+	position: absolute;
+	bottom: 8px;
+	right: 24px;
+	min-width: 347px;
+	max-width: max-content;
+	border-radius: 2px 2px 0 0;
+	border: 1px solid #d1d1d1;
+	background: #f9f9f9;
+	display: flex;
+	gap: 20px;
+	padding: 4px 24px;
+	span {
+		color: #3e3a6b;
+		font-family: var(--medium);
+		font-weight: 500;
+		font-size: 18px;
+		line-height: 18px;
+	}
+}

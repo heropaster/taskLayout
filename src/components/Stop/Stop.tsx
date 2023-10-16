@@ -1,4 +1,6 @@
 import React from "react";
+
+import "./Stop.scss";
 import StopName from "../StopName/StopName";
 import ArrivalTime from "../ArrivalTIme/ArrivalTime";
 import { StopNameT } from "../../types/StopName";
@@ -8,7 +10,7 @@ interface StopProps {
 }
 const Stop: React.FC<StopProps> = ({ name, time }) => {
 	return (
-		<div>
+		<div className="stop">
 			<ArrivalTime time={time} />
 			<StopName name={name} type="RouteStop" />
 		</div>

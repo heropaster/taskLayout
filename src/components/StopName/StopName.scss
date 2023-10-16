@@ -1,10 +1,25 @@
-.stop-name {
-	font-family: var(--bold);
-	font-size: 40px;
-	&.stop-name--eng {
-		font-family: var(--medium);
-		font-weight: 500;
-		font-size: 28px;
-		line-height: 150%;
+.stop-title {
+	display: flex;
+	flex-direction: column;
+	.stop-name {
+		font-family: var(--bold);
+		font-size: 40px;
+		&.route-stop {
+			font-family: var(--medium);
+			font-weight: 500;
+			font-size: 32px;
+			line-height: 100%;
+		}
+		&.stop-name--eng {
+			font-family: var(--medium);
+			font-weight: 500;
+			font-size: 28px;
+			line-height: 150%;
+			&.route-stop--eng {
+				font-size: 24px;
+				line-height: 100%;
+				margin-top: 4px;
+			}
+		}
 	}
 }

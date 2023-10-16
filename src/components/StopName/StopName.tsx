@@ -8,7 +8,7 @@ interface StopNameProps {
 
 const StopName: React.FC<StopNameProps> = ({ name, type }) => {
 	return (
-		<>
+		<div className="stop-title">
 			<h2 className={`stop-name ${type === "RouteStop" && "route-stop"}`}>
 				{name.ru}
 			</h2>
@@ -19,7 +19,7 @@ const StopName: React.FC<StopNameProps> = ({ name, type }) => {
 			>
 				{name.eng}
 			</h3>
-		</>
+		</div>
 	);
 };
 export default StopName;
