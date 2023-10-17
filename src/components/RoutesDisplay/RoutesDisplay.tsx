@@ -13,15 +13,10 @@ export const RoutesDisplay: React.FC<RoutesDisplayProps> = ({ type }) => {
 	const date = new Date();
 	return (
 		<div className="display__route">
-			<RouteHeader type="moving" />
+			<RouteHeader type="stopped" />
 			{type === "routes" ? <Routes /> : <Transfers />}
 
-			<InfoPanel
-				// time={formatDate(date)}
-				date={date}
-				temp="+23°C"
-				speed="17 км/ч"
-			/>
+			<InfoPanel date={date} temp="+23°C" speed="17 км/ч" />
 		</div>
 	);
 };

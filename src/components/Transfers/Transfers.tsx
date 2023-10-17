@@ -13,6 +13,11 @@ export const Transfers = () => {
 					key={index}
 					transport={item.icons[0]}
 					transfers={item.icons.slice(1)}
+					name={
+						index === 2
+							? { ru: data.stops[1].nameRus, eng: data.stops[1].nameEng }
+							: undefined
+					}
 				/>
 			))}
 		</div>

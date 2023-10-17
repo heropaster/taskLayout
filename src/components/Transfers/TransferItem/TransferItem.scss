@@ -10,9 +10,38 @@
 }
 .stop-transfers {
 	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	column-gap: 8px;
+	max-height: 108px; /* Ограничение в 2 строки */
+	overflow: hidden;
+	position: relative;
+}
+.transfers-content {
+	display: flex;
 	column-gap: 16px;
 	row-gap: 8px;
 	flex-wrap: wrap;
-	max-height: 108px;
-	overflow: hidden;
+}
+.scroll {
+	height: auto; /* Высота автоматически растет */
+	animation: scroll 10s linear infinite; /* Прокрутка */
+}
+.ru {
+	font-family: var(--bold);
+	font-size: 32px;
+	line-height: 100%;
+}
+.eng {
+	font-family: var(--medium);
+	font-weight: 500;
+	font-size: 16px;
+}
+@keyframes scroll {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(-100%); /* Прокрутка на одну "страницу" вверх */
+	}
 }

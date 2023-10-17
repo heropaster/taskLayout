@@ -7,6 +7,7 @@ export const Routes = () => {
 			{stops.map((stop) => {
 				return <Stop key={stop.id} time={stop.time} name={stop.name} />;
 			})}
+			<div className="line"></div>
 		</div>
 	);
 };

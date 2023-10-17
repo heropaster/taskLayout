@@ -1,6 +1,22 @@
 .routes {
+	max-height: 438px;
+	height: 100%;
 	padding-top: 24px;
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
+	position: relative;
+}
+.line {
+	width: 2px;
+	height: 100%;
+	position: absolute;
+	left: 97px;
+	top: 0;
+	background: linear-gradient(
+		to bottom,
+		#d9d9d9,
+		#d9d9d9c1 95%,
+		transparent 99%
+	);
 }
