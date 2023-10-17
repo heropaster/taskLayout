@@ -6,6 +6,12 @@
 	flex-direction: column;
 	gap: 24px;
 	position: relative;
+	&.moving {
+		max-height: 474px;
+	}
+	&.last-stops {
+		height: max-content;
+	}
 }
 .line {
 	width: 2px;
@@ -19,4 +25,15 @@
 		#d9d9d9c1 95%,
 		transparent 99%
 	);
+	&.last-stops {
+		background: #d9d9d9;
+		height: calc(100% - 35px);
+	}
+}
+.last {
+	font-size: 24px;
+	font-family: var(--medium);
+	font-weight: 500;
+	margin-top: 16px;
+	margin-left: 32px;
 }

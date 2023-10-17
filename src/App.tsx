@@ -3,7 +3,7 @@ import { Content } from "./components/Info/Content";
 export const App = () => {
 	return (
 		<div className="display">
-			<RoutesDisplay type="transfers" />
+			<RoutesDisplay type="routes" />
 			<Content type="img" />
 		</div>
 	);
