@@ -1,21 +1,27 @@
-import RouteHeader from "./RouteHeader/RouteHeader";
-import InfoPanel from "../InfoPanel/InfoPanel";
-import Routes from "../Routes/Routes";
+import React from "react";
 
+import { RouteHeader } from "./RouteHeader/RouteHeader";
+import { InfoPanel } from "../InfoPanel/InfoPanel";
+import { Routes } from "../Routes/Routes";
+import { Transfers } from "../Transfers/Transfers";
 import "./RoutesDisplay.scss";
-const RoutesDisplay = () => {
+
+interface RoutesDisplayProps {
+	type: "routes" | "transfers";
+}
+export const RoutesDisplay: React.FC<RoutesDisplayProps> = ({ type }) => {
 	const date = new Date();
 	return (
 		<div className="display__route">
-			<RouteHeader />
-			<Routes />
+			<RouteHeader type="moving" />
+			{type === "routes" ? <Routes /> : <Transfers />}
+
 			<InfoPanel
 				// time={formatDate(date)}
 				date={date}
 				temp="+23°C"
-				wind="17 км/ч"
+				speed="17 км/ч"
 			/>
 		</div>
 	);
 };
-export default RoutesDisplay;

@@ -1,0 +1,18 @@
+.transfer-item {
+	margin-bottom: 16px;
+	display: flex;
+	align-items: baseline;
+	column-gap: 16px;
+}
+.transport {
+	width: 48px;
+	height: 48px;
+}
+.stop-transfers {
+	display: flex;
+	column-gap: 16px;
+	row-gap: 8px;
+	flex-wrap: wrap;
+	max-height: 108px;
+	overflow: hidden;
+}

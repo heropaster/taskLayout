@@ -1,0 +1,6 @@
+{
+	"type": "PLAY_IMAGE",
+	"src": "/sdcard/intro/intro_default.png",
+	"label": "Intro",
+	"length": 0
+}

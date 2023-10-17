@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 import "./InfoPanel.scss";
+
 interface InfoPanelProps {
-	// time: string;
 	date: Date;
 	temp: string;
-	wind: string;
+	speed: string;
 }
-const InfoPanel: React.FC<InfoPanelProps> = ({ date, temp, wind }) => {
+export const InfoPanel: React.FC<InfoPanelProps> = ({ date, temp, speed }) => {
 	const [time, setTime] = useState(new Date());
 	useEffect(() => {
 		const timerID = setInterval(() => {
@@ -34,8 +34,7 @@ const InfoPanel: React.FC<InfoPanelProps> = ({ date, temp, wind }) => {
 				})}
 			</span>
 			<span>{temp}</span>
-			<span>{wind}</span>
+			<span>{speed}</span>
 		</div>
 	);
 };
-export default InfoPanel;

@@ -3,7 +3,7 @@ import "./ArrivalTime.scss";
 interface ArrivalTimeProps {
 	time: string;
 }
-const ArrivalTime: React.FC<ArrivalTimeProps> = ({ time }) => {
+export const ArrivalTime: React.FC<ArrivalTimeProps> = ({ time }) => {
 	return (
 		<p className="arrival">
 			<span className="time">{time}</span>
@@ -11,4 +11,3 @@ const ArrivalTime: React.FC<ArrivalTimeProps> = ({ time }) => {
 		</p>
 	);
 };
-export default ArrivalTime;

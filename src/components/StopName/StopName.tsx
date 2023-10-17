@@ -6,15 +6,15 @@ interface StopNameProps {
 	type: string;
 }
 
-const StopName: React.FC<StopNameProps> = ({ name, type }) => {
+export const StopName: React.FC<StopNameProps> = ({ name, type }) => {
 	return (
 		<div className="stop-title">
-			<h2 className={`stop-name ${type === "RouteStop" && "route-stop"}`}>
+			<h2 className={`stop-name ${type === "RouteStop" ? "route-stop" : ""}`}>
 				{name.ru}
 			</h2>
 			<h3
 				className={`stop-name stop-name--eng ${
-					type === "RouteStop" && "route-stop--eng"
+					type === "RouteStop" ? "route-stop--eng" : ""
 				}`}
 			>
 				{name.eng}
@@ -22,4 +22,3 @@ const StopName: React.FC<StopNameProps> = ({ name, type }) => {
 		</div>
 	);
 };
-export default StopName;
