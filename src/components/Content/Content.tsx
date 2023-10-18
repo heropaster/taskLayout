@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from "react";
+import { Reception } from "../Reception/Reception";
+
 import "./Content.scss";
 
+import content from "../../data/contentData.json";
 import outData from "../../data/pulkovoOut.json";
 import inData from "../../data/pulkovoIn.json";
 import departure from "../../assets/icons/departure.svg";
 import arrival from "../../assets/icons/arrival.svg";
+
 interface ContentProps {
 	type: string;
 }
 
-import content from "../../data/contentData.json";
 export const Content: React.FC<ContentProps> = ({ type }) => {
 	const [currentScreen, setCurrentScreen] = useState("DEPARTURE");
 	const [currentTable, setCurrentTable] = useState(
 		currentScreen === "DEPARTURE" ? outData.contents : inData.contents
 	);
+	const [isRegistration, setIsRegistration] = useState(true);
 
 	const interval = setInterval(() => {
 		if (currentScreen === "DEPARTURE") {
 			setCurrentScreen("ARRIVAL");
-		} else setCurrentScreen("DEPARTURE");
+		} else if(currentScreen === 'ARRIVAL') setCurrentScreen("DEPARTURE");
 		clearInterval(interval);
 	}, 10000);
 	useEffect(() => {
@@ -43,19 +47,20 @@ export const Content: React.FC<ContentProps> = ({ type }) => {
 		case "PULKOVO": {
 			return (
 				<div className="display__info display__info--pulkovo">
-					<div className="pulkovo__header">
+					{isRegistration ? <Reception />: (<><div className="pulkovo__header">
 						{currentScreen === "DEPARTURE" && (
 							<>
-								<img src={departure} />
+								<img src={departure} alt="departure" />
 								<h3>Вылеты</h3>
 							</>
 						)}
 						{currentScreen === "ARRIVAL" && (
 							<>
-								<img src={arrival} />
+								<img src={arrival} alt="arrival" />
 								<h3>Прилёты</h3>
 							</>
 						)}
+						
 					</div>
 					<div className="pulkovo__content">
 						<table>
@@ -88,7 +93,8 @@ export const Content: React.FC<ContentProps> = ({ type }) => {
 								))}
 							</tbody>
 						</table>
-					</div>
+					</div></>) }
+					
 				</div>
 			);
 		}

@@ -30,6 +30,7 @@
 			th {
 				padding-left: 8px;
 				font-size: 20px;
+				height: 40px;
 				font-family: var(--medium);
 				font-weight: 500;
 				line-height: 100%;
@@ -37,6 +38,7 @@
 				text-align: left;
 				&:nth-child(5) {
 					text-align: center;
+					padding-bottom: 14px;
 				}
 			}
 		}
