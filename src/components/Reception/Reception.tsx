@@ -31,10 +31,10 @@ export const Reception = () => {
 				<div className="content__foter">
 					<div className="enter">
 						<img src={arrow} alt="enter direction" className="enter__arrow" />
-						<p className="enter__text">
-							<h3>Вход</h3>
-							<h4>Enter</h4>
-						</p>
+						<div className="enter__text">
+							<p className="ru">Вход</p>
+							<p className="eng">Enter</p>
+						</div>
 					</div>
 					<div className="inspection">
 						<h3>Пункт досмотра</h3>
@@ -42,10 +42,10 @@ export const Reception = () => {
 					</div>
 					<div className="enter">
 						<img src={arrow} alt="enter direction" className="enter__arrow" />
-						<p className="enter__text">
-							<h3>Вход</h3>
-							<h4>Enter</h4>
-						</p>
+						<div className="enter__text">
+							<p className="ru">Вход</p>
+							<p className="eng">Enter</p>
+						</div>
 					</div>
 				</div>
 			</div>
