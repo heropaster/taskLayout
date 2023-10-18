@@ -16,21 +16,20 @@ export const Routes: React.FC<RoutesProps> = ({ type }) => {
 		stops.slice(currentIndex, currentIndex + maxStops)
 	);
 
-	const updateStops = () => {
-		const nextIndex = currentIndex + maxStops;
-		if (nextIndex >= stops.length) {
-			setCurrentIndex(0); // Сброс индекса для повторения
-		} else {
-			setCurrentIndex(nextIndex);
-		}
-
-		const newStops = stops.slice(currentIndex, nextIndex);
-		setDisplayedStops(newStops);
-
-		setIsLast(nextIndex > stops.length);
-	};
-
 	useEffect(() => {
+		const updateStops = () => {
+			const nextIndex = currentIndex + maxStops;
+			if (nextIndex >= stops.length) {
+				setCurrentIndex(0); // Сброс индекса для повторения
+			} else {
+				setCurrentIndex(nextIndex);
+			}
+
+			const newStops = stops.slice(currentIndex, nextIndex);
+			setDisplayedStops(newStops);
+
+			setIsLast(nextIndex > stops.length);
+		};
 		const interval = setInterval(updateStops, 3000);
 		if (isLast) {
 			clearInterval(interval);
@@ -41,7 +40,7 @@ export const Routes: React.FC<RoutesProps> = ({ type }) => {
 		return () => {
 			clearInterval(interval);
 		};
-	}, [currentIndex, stops]);
+	}, [currentIndex, stops, isLast, maxStops]);
 
 	return showLast ? (
 		<div className="last">Конечная</div>

@@ -11,7 +11,7 @@ interface RoutesDisplayProps {
 }
 export const RoutesDisplay: React.FC<RoutesDisplayProps> = ({ type }) => {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const [headerType, setHeaderType] = useState<HeaderType>("moving");
+	const [headerType, setHeaderType] = useState<HeaderType>("stopped");
 	// setHeaderType("stopped"); //Затычка(Функция пригодится когда нужно будет на основе полученных от вебсокета данных менять значение)
 
 	const date = new Date();
