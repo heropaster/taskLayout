@@ -11,7 +11,7 @@ import inData from "../../data/pulkovoIn.json";
 interface ContentProps {
 	type: string;
 }
-
+//#TODO Сделай смену с IMG на Content;
 export const Content: React.FC<ContentProps> = ({ type }) => {
 	const [currentScreen, setCurrentScreen] = useState("DEPARTURE");
 	const [currentTable, setCurrentTable] = useState(outData.contents);
