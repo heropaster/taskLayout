@@ -1,4 +1,3 @@
-import React from "react";
 import { Stand } from "../Stand/Stand";
 import arrow from "../../assets/icons/Arrow.svg";
 import "./Reception.scss";
