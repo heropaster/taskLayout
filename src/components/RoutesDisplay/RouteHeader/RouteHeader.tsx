@@ -9,16 +9,16 @@ import { stops } from "../../../data/stops";
 import "./RouteHeader.scss";
 
 interface RouteHeaderProps {
-	type: "stopped" | "moving";
+	type: "STOP_END" | "STOP_BEGIN";
 }
 export const RouteHeader: React.FC<RouteHeaderProps> = ({ type }) => {
 	return (
 		<div
 			className={`header ${
-				type === "stopped" ? "header--stopped" : "header--moving"
+				type === "STOP_BEGIN" ? "header--stopped" : "header--moving"
 			}`}
 		>
-			{type === "stopped" ? (
+			{type === "STOP_BEGIN" ? (
 				<StopName
 					type="header"
 					name={{ ru: data.stops[0].nameRus, eng: data.stops[0].nameEng }}

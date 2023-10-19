@@ -5,22 +5,19 @@ import { InfoPanel } from "../InfoPanel/InfoPanel";
 import { Routes } from "../Routes/Routes";
 import { Transfers } from "../Transfers/Transfers";
 import "./RoutesDisplay.scss";
-import { HeaderType } from "../../types/HeaderType";
+import { Route } from "../../types/Route";
 interface RoutesDisplayProps {
-	type: "routes" | "transfers";
+	type: "STOP_END" | "STOP_BEGIN";
+	data?: Route;
 }
-export const RoutesDisplay: React.FC<RoutesDisplayProps> = ({ type }) => {
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const [headerType, setHeaderType] = useState<HeaderType>("stopped");
-	// setHeaderType("stopped"); //Затычка(Функция пригодится когда нужно будет на основе полученных от вебсокета данных менять значение)
-
+export const RoutesDisplay: React.FC<RoutesDisplayProps> = ({ type, data }) => {
 	const date = new Date();
 	return (
 		<div className="display__route">
-			<RouteHeader type={headerType} />
-			{type === "routes" ? <Routes type={headerType} /> : <Transfers />}
+			<RouteHeader type={type} />
+			{type === "STOP_END" ? <Routes type={type} /> : <Transfers />}
 
-			<InfoPanel date={date} temp="+23°C" speed="17 км/ч" />
+			<InfoPanel date={date} temp="+23°C" />
 		</div>
 	);
 };

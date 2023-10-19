@@ -16,31 +16,31 @@ export const Routes: React.FC<RoutesProps> = ({ type }) => {
 		stops.slice(currentIndex, currentIndex + maxStops)
 	);
 
-	useEffect(() => {
-		const updateStops = () => {
-			const nextIndex = currentIndex + maxStops;
-			if (nextIndex >= stops.length) {
-				setCurrentIndex(0); // Сброс индекса для повторения
-			} else {
-				setCurrentIndex(nextIndex);
-			}
+	// useEffect(() => {
+	// 	const updateStops = () => {
+	// 		const nextIndex = currentIndex + maxStops;
+	// 		if (nextIndex >= stops.length) {
+	// 			setCurrentIndex(0); // Сброс индекса для повторения
+	// 		} else {
+	// 			setCurrentIndex(nextIndex);
+	// 		}
 
-			const newStops = stops.slice(currentIndex, nextIndex);
-			setDisplayedStops(newStops);
+	// 		const newStops = stops.slice(currentIndex, nextIndex);
+	// 		setDisplayedStops(newStops);
 
-			setIsLast(nextIndex > stops.length);
-		};
-		const interval = setInterval(updateStops, 3000);
-		if (isLast) {
-			clearInterval(interval);
-			setTimeout(() => {
-				setShowLast(true);
-			}, 3000);
-		}
-		return () => {
-			clearInterval(interval);
-		};
-	}, [currentIndex, stops, isLast, maxStops]);
+	// 		setIsLast(nextIndex > stops.length);
+	// 	};
+	// 	const interval = setInterval(updateStops, 3000);
+	// 	if (isLast) {
+	// 		clearInterval(interval);
+	// 		setTimeout(() => {
+	// 			setShowLast(true);
+	// 		}, 3000);
+	// 	}
+	// 	return () => {
+	// 		clearInterval(interval);
+	// 	};
+	// }, [currentIndex, stops, isLast, maxStops]);
 
 	return showLast ? (
 		<div className="last">Конечная</div>

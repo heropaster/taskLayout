@@ -4,15 +4,24 @@ import { Reception } from "../Reception/Reception";
 import { Table } from "../Table/Table";
 
 import "./Content.scss";
-import content from "../../data/contentData.json";
+
 import outData from "../../data/pulkovoOut.json";
 import inData from "../../data/pulkovoIn.json";
 
 interface ContentProps {
 	type: string;
+	image?: { type: string; src: string; label: string; length: number };
 }
 //#TODO Сделай смену с IMG на Content;
-export const Content: React.FC<ContentProps> = ({ type }) => {
+export const Content: React.FC<ContentProps> = ({
+	type,
+	image = {
+		type: "PLAY_IMAGE",
+		src: "/sdcard/intro/intro_default.png",
+		label: "Intro",
+		length: 20,
+	},
+}) => {
 	const [currentScreen, setCurrentScreen] = useState("DEPARTURE");
 	const [currentTable, setCurrentTable] = useState(outData.contents);
 	// const [isRegistration, setIsRegistration] = useState(false);
@@ -42,7 +51,7 @@ export const Content: React.FC<ContentProps> = ({ type }) => {
 				<div
 					className="display__info display__info--image"
 					style={{
-						backgroundImage: `url(http://192.168.100.95:8080/${content.src})`,
+						backgroundImage: `url(http://192.168.100.95:8080${image.src})`,
 					}}
 				></div>
 			);
