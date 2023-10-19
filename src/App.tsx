@@ -1,31 +1,50 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useWebSocket from "react-use-websocket";
 
 import { RoutesDisplay } from "./components/RoutesDisplay/RoutesDisplay";
 import { Content } from "./components/Content/Content";
 
-import { useSpeedStore } from "./store";
-
-import type { Route } from "./types/Route";
+import { useDataStore } from "./store";
 
 export const App = () => {
-	const setSpeed = useSpeedStore((state) => state.setSpeed);
+	const [
+		setSpeed,
+		setAction,
+		setRoute,
+		setStops,
+		setCurrentStop,
+		setCurrentStopIndex,
+	] = useDataStore((state) => [
+		state.setSpeed,
+		state.setAction,
+		state.setRoute,
+		state.setStops,
+		state.setCurrentStop,
+		state.setCurrentStopIndex,
+	]);
 	const socketUrl = import.meta.env.VITE_SOCKET_URL;
-	const [currentRoute, seCurrentRoute] = useState<Route | undefined>();
-	const [action, setAction] = useState<"STOP_END" | "STOP_BEGIN">("STOP_BEGIN");
-	const { lastMessage } = useWebSocket(socketUrl);
+	const { lastMessage } = useWebSocket(socketUrl, {
+		onOpen: () => console.log("opened"),
+	});
+	console.log(lastMessage);
 	useEffect(() => {
 		if (lastMessage) {
 			const parsedMessage = JSON.parse(lastMessage.data);
-			console.log(parsedMessage);
+			// console.log(parsedMessage);
 			if (parsedMessage.type === "ROUTE") {
-				seCurrentRoute(JSON.parse(lastMessage.data));
+				setRoute(parsedMessage);
+				setStops(parsedMessage.stops);
+				setCurrentStop(parsedMessage[0]);
 			}
 			if (
 				parsedMessage.type === "STOP_END" ||
 				parsedMessage.type === "STOP_BEGIN"
 			) {
+				setCurrentStopIndex(parsedMessage.index);
 				setAction(parsedMessage.type);
+			}
+			if (parsedMessage.type === "STOP_TIMES") {
+				setCurrentStopIndex(parsedMessage.stops[0].index - 1);
 			}
 			if (parsedMessage.type === "SPEED") {
 				setSpeed(String(parsedMessage.speed));
@@ -35,7 +54,7 @@ export const App = () => {
 
 	return (
 		<div className="display">
-			<RoutesDisplay type={action} data={currentRoute ?? undefined} />
+			<RoutesDisplay />
 			<Content
 				type="img"
 				image={{

@@ -7,11 +7,13 @@ import { Path } from "../../Path/Path";
 import data from ".//../../../data/mockData.json";
 import { stops } from "../../../data/stops";
 import "./RouteHeader.scss";
-
+// import { useDataStore } from "../../../store";
 interface RouteHeaderProps {
-	type: "STOP_END" | "STOP_BEGIN";
+	type: string;
 }
 export const RouteHeader: React.FC<RouteHeaderProps> = ({ type }) => {
+	// const [stops] = useDataStore((state) => [state.stops]);
+	// console.log(stops);
 	return (
 		<div
 			className={`header ${
@@ -19,16 +21,13 @@ export const RouteHeader: React.FC<RouteHeaderProps> = ({ type }) => {
 			}`}
 		>
 			{type === "STOP_BEGIN" ? (
-				<StopName
-					type="header"
-					name={{ ru: data.stops[0].nameRus, eng: data.stops[0].nameEng }}
-				/>
+				<StopName type="header" />
 			) : (
 				<>
 					<RouteNumber src={data.icon} />
 					<Path
-						first={data.stops[0].nameRus}
-						last={data.stops[stops.length - 1].nameRus}
+						first={stops[0].nameRus}
+						last={stops[stops.length - 1].nameRus}
 					/>
 				</>
 			)}
