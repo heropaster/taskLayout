@@ -55,7 +55,7 @@ export const Routes: React.FC<RoutesProps> = ({ type }) => {
 					<Stop
 						key={stop.index}
 						time={"15"}
-						name={{ ru: stop.nameRus, eng: stop.nameEng }}
+						name={{ rus: stop.nameRus, eng: stop.nameEng }}
 					/>
 				);
 			})}

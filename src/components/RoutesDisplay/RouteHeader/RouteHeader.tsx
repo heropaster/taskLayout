@@ -5,15 +5,15 @@ import { RouteNumber } from "../../RouteNumber/RouteNumber";
 import { Path } from "../../Path/Path";
 
 import data from ".//../../../data/mockData.json";
-import { stops } from "../../../data/stops";
+// import { stops } from "../../../data/stops";
 import "./RouteHeader.scss";
-// import { useDataStore } from "../../../store";
+import { useDataStore } from "../../../store";
 interface RouteHeaderProps {
 	type: string;
 }
 export const RouteHeader: React.FC<RouteHeaderProps> = ({ type }) => {
-	// const [stops] = useDataStore((state) => [state.stops]);
-	// console.log(stops);
+	const [stops, currentStop] = useDataStore((state) => [state.stops, currentStop]);
+	
 	return (
 		<div
 			className={`header ${
@@ -21,14 +21,16 @@ export const RouteHeader: React.FC<RouteHeaderProps> = ({ type }) => {
 			}`}
 		>
 			{type === "STOP_BEGIN" ? (
-				<StopName type="header" />
+				<StopName type="header" name={{rus: currentStop.nameRus, eng: currentStop.nameEng}} />
 			) : (
 				<>
 					<RouteNumber src={data.icon} />
-					<Path
-						first={stops[0].nameRus}
-						last={stops[stops.length - 1].nameRus}
-					/>
+					{stops.length > 0 && (
+						<Path
+							first={stops[0].nameRus}
+							last={stops[stops.length - 1].nameRus}
+						/>
+					)}
 				</>
 			)}
 		</div>

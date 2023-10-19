@@ -1,5 +1,6 @@
 import React from "react";
 import "./Path.scss";
+
 interface PathProps {
 	first: string;
 	last: string;

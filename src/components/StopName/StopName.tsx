@@ -1,23 +1,24 @@
 import React from "react";
 import "./StopName.scss";
-import { useDataStore } from "../../store";
+// import { useDataStore } from "../../store";
 interface StopNameProps {
 	type: string | undefined;
+	name: { rus: string; eng: string };
 }
 
-export const StopName: React.FC<StopNameProps> = ({ type }) => {
-	const [currentStop] = useDataStore((state) => [state.currentStop]);
+export const StopName: React.FC<StopNameProps> = ({ type, name }) => {
+	// const [currentStop] = useDataStore((state) => [state.currentStop]);
 	return (
 		<div className="stop-title">
 			<h2 className={`stop-name ${type === "RouteStop" ? "route-stop" : ""}`}>
-				{currentStop?.nameRus}
+				{name.rus}
 			</h2>
 			<h3
 				className={`stop-name stop-name--eng ${
 					type === "RouteStop" ? "route-stop--eng" : ""
 				}`}
 			>
-				{currentStop?.nameEng}
+				{name.eng}
 			</h3>
 		</div>
 	);

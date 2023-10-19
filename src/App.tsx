@@ -26,25 +26,30 @@ export const App = () => {
 	const { lastMessage } = useWebSocket(socketUrl, {
 		onOpen: () => console.log("opened"),
 	});
-	console.log(lastMessage);
 	useEffect(() => {
+		console.log(lastMessage);
 		if (lastMessage) {
 			const parsedMessage = JSON.parse(lastMessage.data);
 			// console.log(parsedMessage);
 			if (parsedMessage.type === "ROUTE") {
+				console.log("ROUTE");
 				setRoute(parsedMessage);
 				setStops(parsedMessage.stops);
-				setCurrentStop(parsedMessage[0]);
+				setCurrentStop(parsedMessage.stops[0]);
+				console.log(parsedMessage.stops);
+				console.log(parsedMessage.stops[0]);
 			}
 			if (
 				parsedMessage.type === "STOP_END" ||
 				parsedMessage.type === "STOP_BEGIN"
 			) {
 				setCurrentStopIndex(parsedMessage.index);
+				console.log(parsedMessage.index);
+
 				setAction(parsedMessage.type);
 			}
 			if (parsedMessage.type === "STOP_TIMES") {
-				setCurrentStopIndex(parsedMessage.stops[0].index - 1);
+				
 			}
 			if (parsedMessage.type === "SPEED") {
 				setSpeed(String(parsedMessage.speed));
