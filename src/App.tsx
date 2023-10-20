@@ -6,7 +6,9 @@ import { Content } from "./components/Content/Content";
 
 import { useDataStore } from "./store";
 import { useDataContext } from "./DataContext";
-
+/* #ERROR Почему-то ошибка возникла несколько раз когда удалял setAction,
+ сейчас вроде нету, незнаю с чем может быть связана
+, но в ошибке указывалось STOP_TIMES, хотя его не трогал */
 export const App = () => {
 	const state = useDataContext();
 	const [
@@ -38,7 +40,11 @@ export const App = () => {
 				case "ROUTE": {
 					setRoute(parsedMessage);
 					setStops(parsedMessage.stops);
-					setCurrentStop(parsedMessage.stops[0]);
+					// setCurrentStop(parsedMessage.stops[0]);
+					state?.dispatch({
+						type: "UPDATE_CURRENT_STOP",
+						payload: JSON.stringify(parsedMessage.stops[0]),
+					});
 					console.log(15);
 					break;
 				}
@@ -49,7 +55,11 @@ export const App = () => {
 						type: "UPDATE_INDEX",
 						payload: String(parsedMessage.index),
 					});
-					setCurrentStop(stops[parsedMessage.index]);
+					// setCurrentStop(stops[parsedMessage.index]);
+					state?.dispatch({
+						type: "UPDATE_CURRENT_STOP",
+						payload: JSON.stringify(stops[parsedMessage.index]),
+					});
 					// setAction(parsedMessage.type);
 					state?.dispatch({
 						type: "UPDATE_ACTION",
