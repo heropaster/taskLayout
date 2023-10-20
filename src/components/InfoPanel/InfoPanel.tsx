@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import "./InfoPanel.scss";
 import { useDataStore } from "../../store";
-
+import { useDataContext } from "../../DataContext";
 interface InfoPanelProps {
 	date: Date;
 	temp: string;
@@ -19,6 +19,7 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ date, temp }) => {
 			clearInterval(timerID); // Очистка таймера при размонтировании компонента
 		};
 	}, []);
+	const state = useDataContext();
 	return (
 		<div className="panel">
 			<span>
@@ -35,7 +36,7 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ date, temp }) => {
 				})}
 			</span>
 			<span>{temp}</span>
-			<span>{speed} км/ч</span>
+			<span>{state?.state.state1} км/ч</span>
 		</div>
 	);
 };

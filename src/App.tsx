@@ -5,8 +5,10 @@ import { RoutesDisplay } from "./components/RoutesDisplay/RoutesDisplay";
 import { Content } from "./components/Content/Content";
 
 import { useDataStore } from "./store";
+import { useDataContext } from "./DataContext";
 
 export const App = () => {
+	const state = useDataContext();
 	const [
 		stops,
 		setSpeed,
@@ -30,6 +32,7 @@ export const App = () => {
 	const { lastMessage } = useWebSocket(socketUrl, {
 		onOpen: () => console.log("opened"),
 		onMessage: (event) => {
+			// console.log(event);
 			const parsedMessage = JSON.parse(event.data);
 			switch (parsedMessage.type) {
 				case "ROUTE": {
@@ -68,7 +71,11 @@ export const App = () => {
 					break;
 
 				case "SPEED":
-					setSpeed(String(parsedMessage.speed));
+					// setSpeed(String(parsedMessage.speed));
+					state?.dispatch({
+						type: "UPDATE_STATE",
+						payload: String(parsedMessage.speed),
+					});
 					break;
 			}
 			// if (parsedMessage.type === "ROUTE") {

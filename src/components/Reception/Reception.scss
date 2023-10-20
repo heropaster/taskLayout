@@ -26,56 +26,7 @@
 			font-weight: 500;
 		}
 	}
-	.stands {
-		padding: 54px 32px;
-		display: flex;
-		justify-content: space-between;
-	}
-	&__foter {
-		padding: 0 40px;
-		display: flex;
-		gap: 40px;
-		.enter {
-			width: 144px;
-			display: flex;
-			align-items: center;
-			gap: 8px;
-			&__arrow {
-				width: 64px;
-				height: 64px;
-			}
-			&__text {
-				h3 {
-					font-size: 32px;
-					font-family: var(--bold);
-					font-weight: 700;
-					line-height: 100%;
-					margin-bottom: 2px;
-				}
-				h4 {
-					font-size: 20px;
-					font-family: var(--medium);
-					font-weight: 500;
-					line-height: 150%;
-				}
-			}
-		}
-		.inspection {
-			width: 450px;
-			background: #b6e5ff;
-			padding: 10px 32px;
-			.ru {
-				font-family: var(--bold);
-				font-weight: 700;
-				font-size: 32px;
-				line-height: 100%;
-			}
-			.eng {
-				font-family: var(--medium);
-				font-size: 20px;
-				font-weight: 500;
-				line-height: 150%;
-			}
-		}
-	}
+}
+.image-container {
+	margin-top: 38px;
 }
