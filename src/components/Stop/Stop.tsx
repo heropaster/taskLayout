@@ -12,7 +12,6 @@ export const Stop: React.FC<StopProps> = ({ name, time }) => {
 	return (
 		<div className="stop">
 			<ArrivalTime time={time} />
-
 			<StopName name={name} type="RouteStop" />
 		</div>
 	);

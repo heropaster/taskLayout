@@ -1,60 +1,38 @@
-import { Stop } from "../Stop/Stop";
+import React from "react";
 import "./Routes.scss";
-// import { stops } from "../../data/stops";
-import data from "../../data/mockData.json";
-import React, { useState, useEffect } from "react";
+
+import { useDataStore } from "../../store";
+import { Stop } from "../Stop/Stop";
 interface RoutesProps {
 	type: string;
 }
 export const Routes: React.FC<RoutesProps> = ({ type }) => {
-	const stops = data.stops;
-	const maxStops = type === "moving" ? 4 : 3;
-	const [currentIndex, setCurrentIndex] = useState(0);
-	const [isLast, setIsLast] = useState(false);
-	const [showLast, setShowLast] = useState(false);
-	const [displayedStops, setDisplayedStops] = useState(
-		stops.slice(currentIndex, currentIndex + maxStops)
+	const [stopTimes, stops] = useDataStore((state) => [
+		state.stopTimes,
+		state.stops,
+	]);
+	const maxStops = type === "STOP_END" ? 4 : 3;
+
+	const isLast = stopTimes.length === 1;
+	const showLast = stopTimes.length === 0;
+	if (showLast) return <div className="last">Конечная</div>;
+
+	const displayedStops = stops.slice(
+		stopTimes[0].index,
+		stopTimes[0].index + maxStops
 	);
 
-	// useEffect(() => {
-	// 	const updateStops = () => {
-	// 		const nextIndex = currentIndex + maxStops;
-	// 		if (nextIndex >= stops.length) {
-	// 			setCurrentIndex(0); // Сброс индекса для повторения
-	// 		} else {
-	// 			setCurrentIndex(nextIndex);
-	// 		}
-
-	// 		const newStops = stops.slice(currentIndex, nextIndex);
-	// 		setDisplayedStops(newStops);
-
-	// 		setIsLast(nextIndex > stops.length);
-	// 	};
-	// 	const interval = setInterval(updateStops, 3000);
-	// 	if (isLast) {
-	// 		clearInterval(interval);
-	// 		setTimeout(() => {
-	// 			setShowLast(true);
-	// 		}, 3000);
-	// 	}
-	// 	return () => {
-	// 		clearInterval(interval);
-	// 	};
-	// }, [currentIndex, stops, isLast, maxStops]);
-
-	return showLast ? (
-		<div className="last">Конечная</div>
-	) : (
+	return (
 		<div
 			className={`routes ${type === "moving" ? "moving" : ""} ${
 				isLast ? "last-stops" : ""
 			} `}
 		>
-			{displayedStops.map((stop) => {
+			{displayedStops.map((stop, index) => {
 				return (
 					<Stop
 						key={stop.index}
-						time={"15"}
+						time={String(stopTimes[index].time)}
 						name={{ rus: stop.nameRus, eng: stop.nameEng }}
 					/>
 				);

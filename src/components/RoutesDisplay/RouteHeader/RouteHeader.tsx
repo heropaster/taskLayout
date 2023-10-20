@@ -12,8 +12,11 @@ interface RouteHeaderProps {
 	type: string;
 }
 export const RouteHeader: React.FC<RouteHeaderProps> = ({ type }) => {
-	const [stops, currentStop] = useDataStore((state) => [state.stops, currentStop]);
-	
+	const [stops, currentStop] = useDataStore((state) => [
+		state.stops,
+		state.currentStop,
+	]);
+
 	return (
 		<div
 			className={`header ${
@@ -21,7 +24,12 @@ export const RouteHeader: React.FC<RouteHeaderProps> = ({ type }) => {
 			}`}
 		>
 			{type === "STOP_BEGIN" ? (
-				<StopName type="header" name={{rus: currentStop.nameRus, eng: currentStop.nameEng}} />
+				stops.length > 0 && (
+					<StopName
+						type="header"
+						name={{ rus: currentStop?.nameRus, eng: currentStop?.nameEng }}
+					/>
+				)
 			) : (
 				<>
 					<RouteNumber src={data.icon} />

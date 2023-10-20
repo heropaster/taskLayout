@@ -1,10 +1,8 @@
-import React from "react";
 import { useDataStore } from "../../store";
 import { RouteHeader } from "./RouteHeader/RouteHeader";
 import { InfoPanel } from "../InfoPanel/InfoPanel";
 import { Routes } from "../Routes/Routes";
 import { Transfers } from "../Transfers/Transfers";
-import type { Route } from "../../types/Route";
 import "./RoutesDisplay.scss";
 
 export const RoutesDisplay = () => {

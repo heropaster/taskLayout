@@ -3,7 +3,7 @@ import "./StopName.scss";
 // import { useDataStore } from "../../store";
 interface StopNameProps {
 	type: string | undefined;
-	name: { rus: string; eng: string };
+	name: { rus?: string; eng?: string };
 }
 
 export const StopName: React.FC<StopNameProps> = ({ type, name }) => {

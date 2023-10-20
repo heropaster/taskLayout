@@ -8,54 +8,90 @@ import { useDataStore } from "./store";
 
 export const App = () => {
 	const [
+		stops,
 		setSpeed,
 		setAction,
 		setRoute,
 		setStops,
 		setCurrentStop,
 		setCurrentStopIndex,
+		setStopTimes,
 	] = useDataStore((state) => [
+		state.stops,
 		state.setSpeed,
 		state.setAction,
 		state.setRoute,
 		state.setStops,
 		state.setCurrentStop,
 		state.setCurrentStopIndex,
+		state.setStopTimes,
 	]);
 	const socketUrl = import.meta.env.VITE_SOCKET_URL;
 	const { lastMessage } = useWebSocket(socketUrl, {
 		onOpen: () => console.log("opened"),
+		onMessage: (event) => {
+			const parsedMessage = JSON.parse(event.data);
+			switch (parsedMessage.type) {
+				case "ROUTE": {
+					setRoute(parsedMessage);
+					setStops(parsedMessage.stops);
+					setCurrentStop(parsedMessage.stops[0]);
+					console.log(15);
+					break;
+				}
+				case "STOP_END":
+				case "STOP_BEGIN":
+					setCurrentStopIndex(parsedMessage.index);
+					setCurrentStop(stops[parsedMessage.index]);
+					setAction(parsedMessage.type);
+					break;
+			}
+			// if (parsedMessage.type === "ROUTE") {
+			// }
+			// if (
+			// 	parsedMessage.type === "STOP_END" ||
+			// 	parsedMessage.type === "STOP_BEGIN"
+			// ) {
+			// }
+		},
 	});
 	useEffect(() => {
-		console.log(lastMessage);
 		if (lastMessage) {
 			const parsedMessage = JSON.parse(lastMessage.data);
-			// console.log(parsedMessage);
-			if (parsedMessage.type === "ROUTE") {
-				console.log("ROUTE");
-				setRoute(parsedMessage);
-				setStops(parsedMessage.stops);
-				setCurrentStop(parsedMessage.stops[0]);
-				console.log(parsedMessage.stops);
-				console.log(parsedMessage.stops[0]);
+			console.log(parsedMessage);
+			switch (parsedMessage.type) {
+				case "ROUTE":
+					console.log("ROUTE");
+					break;
+				case "STOP_TIMES":
+					setStopTimes(parsedMessage.stops);
+					break;
+				case "SPEED":
+					setSpeed(String(parsedMessage.speed));
+					break;
 			}
-			if (
-				parsedMessage.type === "STOP_END" ||
-				parsedMessage.type === "STOP_BEGIN"
-			) {
-				setCurrentStopIndex(parsedMessage.index);
-				console.log(parsedMessage.index);
+			// if (parsedMessage.type === "ROUTE") {
+			// 	console.log("ROUTE");
+			// }
 
-				setAction(parsedMessage.type);
-			}
-			if (parsedMessage.type === "STOP_TIMES") {
-				
-			}
-			if (parsedMessage.type === "SPEED") {
-				setSpeed(String(parsedMessage.speed));
-			}
+			// if (parsedMessage.type === "STOP_TIMES") {
+			// 	setStopTimes(parsedMessage.stops);
+			// }
+			// if (parsedMessage.type === "SPEED") {
+			// 	setSpeed(String(parsedMessage.speed));
+			// }
 		}
-	}, [lastMessage]);
+	}, [
+		lastMessage,
+		setAction,
+		setCurrentStop,
+		setCurrentStopIndex,
+		setRoute,
+		setSpeed,
+		setStopTimes,
+		setStops,
+		stops,
+	]);
 
 	return (
 		<div className="display">
