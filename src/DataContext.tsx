@@ -10,6 +10,7 @@ type DataAction = {
 interface DataContextState {
 	speed: string;
 	index: number;
+	action: string;
 }
 type Context = {
 	state: DataContextState;
@@ -26,6 +27,8 @@ function dataReducer(
 			return { ...state, speed: action.payload };
 		case "UPDATE_INDEX":
 			return { ...state, index: Number(action.payload) };
+		case "UPDATE_ACTION":
+			return { ...state, action: action.payload };
 		default:
 			return state;
 	}
@@ -39,6 +42,7 @@ export const DataContextProvider: React.FC<{ children: ReactNode }> = ({
 	const [state, dispatch] = useReducer(dataReducer, {
 		speed: "",
 		index: 0,
+		action: "",
 	});
 
 	return (

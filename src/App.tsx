@@ -11,22 +11,22 @@ export const App = () => {
 	const state = useDataContext();
 	const [
 		stops,
-		setSpeed,
-		setAction,
 		setRoute,
 		setStops,
 		setCurrentStop,
-		setCurrentStopIndex,
 		setStopTimes,
+		// setSpeed,
+		// setAction,
+		// setCurrentStopIndex,
 	] = useDataStore((state) => [
 		state.stops,
-		state.setSpeed,
-		state.setAction,
 		state.setRoute,
 		state.setStops,
 		state.setCurrentStop,
-		state.setCurrentStopIndex,
 		state.setStopTimes,
+		// state.setSpeed,
+		// state.setAction,
+		// state.setCurrentStopIndex,
 	]);
 	const socketUrl = import.meta.env.VITE_SOCKET_URL;
 	const { lastMessage } = useWebSocket(socketUrl, {
@@ -50,7 +50,11 @@ export const App = () => {
 						payload: String(parsedMessage.index),
 					});
 					setCurrentStop(stops[parsedMessage.index]);
-					setAction(parsedMessage.type);
+					// setAction(parsedMessage.type);
+					state?.dispatch({
+						type: "UPDATE_ACTION",
+						payload: parsedMessage.type,
+					});
 					break;
 				case "STOP_TIMES":
 					setStopTimes(parsedMessage.stops);
@@ -78,11 +82,11 @@ export const App = () => {
 		}
 	}, [
 		lastMessage,
-		setAction,
+		// setAction,
 		setCurrentStop,
-		setCurrentStopIndex,
+		// setCurrentStopIndex,
 		setRoute,
-		setSpeed,
+		// setSpeed,
 		setStopTimes,
 		setStops,
 		stops,
