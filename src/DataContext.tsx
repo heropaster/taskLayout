@@ -1,21 +1,31 @@
 import React, { createContext, useContext, ReactNode, useReducer } from "react";
 
-// Определите тип действия для обновления состояния
-type DataAction = { type: "UPDATE_STATE"; payload: string };
+// Типизация действий
+type DataAction = {
+	type: string;
+	payload: string;
+};
 
-// Определите начальное состояние
+// Типы для стейтов
 interface DataContextState {
-	state1: string;
+	speed: string;
+	index: number;
 }
 type Context = {
 	state: DataContextState;
 	dispatch: React.Dispatch<DataAction>;
 };
-// Создайте редюсер для обработки действий
-function dataReducer(state: DataContextState, action: DataAction) {
+
+// Обработка действий
+function dataReducer(
+	state: DataContextState,
+	action: DataAction
+): DataContextState {
 	switch (action.type) {
-		case "UPDATE_STATE":
-			return { ...state, state1: action.payload };
+		case "UPDATE_SPEED":
+			return { ...state, speed: action.payload };
+		case "UPDATE_INDEX":
+			return { ...state, index: Number(action.payload) };
 		default:
 			return state;
 	}
@@ -27,7 +37,8 @@ export const DataContextProvider: React.FC<{ children: ReactNode }> = ({
 	children,
 }) => {
 	const [state, dispatch] = useReducer(dataReducer, {
-		state1: "Initial Value 1",
+		speed: "",
+		index: 0,
 	});
 
 	return (

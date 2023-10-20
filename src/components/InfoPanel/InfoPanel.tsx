@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 import "./InfoPanel.scss";
-import { useDataStore } from "../../store";
+// import { useDataStore } from "../../store";
 import { useDataContext } from "../../DataContext";
 interface InfoPanelProps {
 	date: Date;
 	temp: string;
 }
 export const InfoPanel: React.FC<InfoPanelProps> = ({ date, temp }) => {
-	const [speed] = useDataStore((state) => [state.speed]);
+	// const [speed] = useDataStore((state) => [state.speed]);
 	const [time, setTime] = useState(new Date());
 	useEffect(() => {
 		const timerID = setInterval(() => {
@@ -36,7 +36,7 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ date, temp }) => {
 				})}
 			</span>
 			<span>{temp}</span>
-			<span>{state?.state.state1} км/ч</span>
+			<span>{state?.state.speed} км/ч</span>
 		</div>
 	);
 };

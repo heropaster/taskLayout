@@ -12,7 +12,6 @@ interface ContentProps {
 	type: string;
 	image?: { type: string; src: string; label: string; length: number };
 }
-//#TODO Сделай смену с IMG на Content;
 export const Content: React.FC<ContentProps> = ({
 	type,
 	image = {
@@ -24,7 +23,6 @@ export const Content: React.FC<ContentProps> = ({
 }) => {
 	const [currentScreen, setCurrentScreen] = useState("DEPARTURE");
 	const [currentTable, setCurrentTable] = useState(outData.contents);
-	// const [isRegistration, setIsRegistration] = useState(false);
 	const [displayType, setDisplayType] = useState("table");
 
 	useEffect(() => {

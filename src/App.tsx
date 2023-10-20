@@ -44,7 +44,11 @@ export const App = () => {
 				}
 				case "STOP_END":
 				case "STOP_BEGIN":
-					setCurrentStopIndex(parsedMessage.index);
+					// setCurrentStopIndex(parsedMessage.index);
+					state?.dispatch({
+						type: "UPDATE_INDEX",
+						payload: String(parsedMessage.index),
+					});
 					setCurrentStop(stops[parsedMessage.index]);
 					setAction(parsedMessage.type);
 					break;
@@ -52,13 +56,6 @@ export const App = () => {
 					setStopTimes(parsedMessage.stops);
 					break;
 			}
-			// if (parsedMessage.type === "ROUTE") {
-			// }
-			// if (
-			// 	parsedMessage.type === "STOP_END" ||
-			// 	parsedMessage.type === "STOP_BEGIN"
-			// ) {
-			// }
 		},
 	});
 	useEffect(() => {
@@ -73,21 +70,11 @@ export const App = () => {
 				case "SPEED":
 					// setSpeed(String(parsedMessage.speed));
 					state?.dispatch({
-						type: "UPDATE_STATE",
+						type: "UPDATE_SPEED",
 						payload: String(parsedMessage.speed),
 					});
 					break;
 			}
-			// if (parsedMessage.type === "ROUTE") {
-			// 	console.log("ROUTE");
-			// }
-
-			// if (parsedMessage.type === "STOP_TIMES") {
-			// 	setStopTimes(parsedMessage.stops);
-			// }
-			// if (parsedMessage.type === "SPEED") {
-			// 	setSpeed(String(parsedMessage.speed));
-			// }
 		}
 	}, [
 		lastMessage,
