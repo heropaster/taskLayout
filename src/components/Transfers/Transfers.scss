@@ -1,9 +1,18 @@
 .transfers {
 	padding: 32px;
+	animation: Visible 0.3s forwards;
 }
 .noTransfers {
 	font-family: var(--bold);
 	font-weight: 700;
 	font-size: 26px;
 	line-height: 100%;
+}
+@keyframes Visible {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import "./RouteNumber.scss";
 interface RouteNumberProps {
-	src: string;
+	src: string | undefined;
 }
 export const RouteNumber: React.FC<RouteNumberProps> = ({ src }) => {
 	return (

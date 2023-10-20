@@ -4,21 +4,21 @@ import { StopName } from "../../StopName/StopName";
 import { RouteNumber } from "../../RouteNumber/RouteNumber";
 import { Path } from "../../Path/Path";
 
-import data from ".//../../../data/mockData.json";
-// import { stops } from "../../../data/stops";
 import "./RouteHeader.scss";
 import { useDataStore } from "../../../store";
 interface RouteHeaderProps {
 	type: string;
 }
 export const RouteHeader: React.FC<RouteHeaderProps> = ({ type }) => {
-	const [stops, currentStop] = useDataStore((state) => [
+	const [stops, currentStop, route] = useDataStore((state) => [
 		state.stops,
 		state.currentStop,
+		state.route,
 	]);
 
 	return (
 		<div
+			key={type}
 			className={`header ${
 				type === "STOP_BEGIN" ? "header--stopped" : "header--moving"
 			}`}
@@ -32,7 +32,7 @@ export const RouteHeader: React.FC<RouteHeaderProps> = ({ type }) => {
 				)
 			) : (
 				<>
-					<RouteNumber src={data.icon} />
+					<RouteNumber src={route?.icon} />
 					{stops.length > 0 && (
 						<Path
 							first={stops[0].nameRus}

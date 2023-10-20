@@ -5,7 +5,7 @@ interface ArrivalTimeProps {
 }
 export const ArrivalTime: React.FC<ArrivalTimeProps> = ({ time }) => {
 	return (
-		<p className="arrival">
+		<p key={time} className="arrival">
 			<span className="time">{time}</span>
 			<span className="minutes">мин</span>
 			<span className="circle-container">

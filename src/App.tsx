@@ -45,6 +45,9 @@ export const App = () => {
 					setCurrentStop(stops[parsedMessage.index]);
 					setAction(parsedMessage.type);
 					break;
+				case "STOP_TIMES":
+					setStopTimes(parsedMessage.stops);
+					break;
 			}
 			// if (parsedMessage.type === "ROUTE") {
 			// }
@@ -63,9 +66,7 @@ export const App = () => {
 				case "ROUTE":
 					console.log("ROUTE");
 					break;
-				case "STOP_TIMES":
-					setStopTimes(parsedMessage.stops);
-					break;
+
 				case "SPEED":
 					setSpeed(String(parsedMessage.speed));
 					break;

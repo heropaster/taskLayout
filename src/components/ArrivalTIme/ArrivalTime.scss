@@ -13,6 +13,7 @@
 		font-family: var(--medium);
 		font-weight: 500;
 		line-height: 32px;
+		animation: Visible 0.3s forwards;
 	}
 	.minutes {
 		font-size: 24px;
@@ -41,5 +42,13 @@
 		height: 20px;
 		border-radius: 50%;
 		background: #b6e5ff;
+	}
+}
+@keyframes Visible {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
 	}
 }

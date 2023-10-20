@@ -1,5 +1,6 @@
 .header {
 	width: 100%;
+	transition: opacity 3000ms;
 	&--moving {
 		display: flex;
 		gap: 32px;
@@ -13,5 +14,14 @@
 		height: 102px;
 		background: #b6e5ff;
 		padding: 10px 32px;
+	}
+	animation: Visible 0.3s forwards;
+}
+@keyframes Visible {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
 	}
 }

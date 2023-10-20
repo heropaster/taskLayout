@@ -13,7 +13,7 @@ export const Transfers = () => {
 		const transfers = stops[currentStopIndex].transfers;
 
 		return (
-			<div className="transfers">
+			<div key={currentStopIndex} className="transfers">
 				{transfers.length === 0 && (
 					<div className="noTransfers">Пересадок нет</div>
 				)}

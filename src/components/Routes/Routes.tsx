@@ -13,7 +13,7 @@ export const Routes: React.FC<RoutesProps> = ({ type }) => {
 	]);
 	const maxStops = type === "STOP_END" ? 4 : 3;
 
-	const isLast = stopTimes.length === 1;
+	const isLast = stopTimes.length <= 2 || stopTimes.length === 3;
 	const showLast = stopTimes.length === 0;
 	if (showLast) return <div className="last">Конечная</div>;
 
@@ -24,6 +24,7 @@ export const Routes: React.FC<RoutesProps> = ({ type }) => {
 
 	return (
 		<div
+			key={type}
 			className={`routes ${type === "moving" ? "moving" : ""} ${
 				isLast ? "last-stops" : ""
 			} `}
