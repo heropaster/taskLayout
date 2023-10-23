@@ -32,33 +32,31 @@ export const App = () => {
 					});
 					break;
 				}
+
 				case "STOP_END":
 				case "STOP_BEGIN":
-					if (state?.state.stops.length !== 0) {
+					state?.dispatch({
+						type: "UPDATE_INDEX",
+						payload: String(parsedMessage.index),
+					});
+					if (state?.state.stops[parsedMessage.index] !== undefined) {
 						state?.dispatch({
-							type: "UPDATE_INDEX",
-							payload: String(parsedMessage.index),
+							type: "UPDATE_CURRENT_STOP",
+							payload: JSON.stringify(state?.state.stops[parsedMessage.index]),
 						});
-						if (state?.state.stops[parsedMessage.index] !== undefined) {
-							state?.dispatch({
-								type: "UPDATE_CURRENT_STOP",
-								payload: JSON.stringify(
-									state?.state.stops[parsedMessage.index]
-								),
-							});
-						}
 					}
-
 					state?.dispatch({
 						type: "UPDATE_ACTION",
 						payload: parsedMessage.type,
 					});
 					break;
+
 				case "STOP_TIMES":
 					state?.dispatch({
 						type: "UPDATE_STOP_TIMES",
 						payload: JSON.stringify(parsedMessage.stops),
 					});
+
 					break;
 			}
 		},
