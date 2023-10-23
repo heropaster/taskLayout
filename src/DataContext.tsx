@@ -2,6 +2,7 @@ import React, { createContext, useContext, ReactNode, useReducer } from "react";
 import type { Stop } from "./types/Stop";
 import type { Route } from "./types/Route";
 import type { StopTime } from "./types/StopTime";
+import type { Content } from "./types/Content";
 // Типизация действий
 type DataAction = {
 	type: string;
@@ -17,6 +18,7 @@ interface DataContextState {
 	route: Route | undefined;
 	stops: Stop[];
 	stopTimes: StopTime[];
+	content: Content | undefined;
 }
 type Context = {
 	state: DataContextState;
@@ -43,6 +45,8 @@ function dataReducer(
 			return { ...state, stops: JSON.parse(action.payload) };
 		case "UPDATE_STOP_TIMES":
 			return { ...state, stopTimes: JSON.parse(action.payload) };
+		case "UPDATE_CONTENT":
+			return { ...state, content: JSON.parse(action.payload) };
 		default:
 			return state;
 	}
@@ -61,6 +65,7 @@ export const DataContextProvider: React.FC<{ children: ReactNode }> = ({
 		route: undefined,
 		stops: [],
 		stopTimes: [],
+		content: undefined,
 	});
 
 	return (

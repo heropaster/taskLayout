@@ -20,15 +20,16 @@ export const App = () => {
 						type: "UPDATE_STOPS",
 						payload: JSON.stringify(parsedMessage.stops),
 					});
-					state?.dispatch({
-						type: "UPDATE_CURRENT_STOP",
-						payload: JSON.stringify(parsedMessage.stops[0]),
-					});
+					if (parsedMessage.stops[0] != undefined) {
+						state?.dispatch({
+							type: "UPDATE_CURRENT_STOP",
+							payload: JSON.stringify(parsedMessage.stops[0]),
+						});
+					}
 					state?.dispatch({
 						type: "UPDATE_ROUTE",
 						payload: JSON.stringify(parsedMessage),
 					});
-					console.log(15);
 					break;
 				}
 				case "STOP_END":
@@ -38,10 +39,14 @@ export const App = () => {
 							type: "UPDATE_INDEX",
 							payload: String(parsedMessage.index),
 						});
-						state?.dispatch({
-							type: "UPDATE_CURRENT_STOP",
-							payload: JSON.stringify(state?.state.stops[parsedMessage.index]),
-						});
+						if (state?.state.stops[parsedMessage.index] !== undefined) {
+							state?.dispatch({
+								type: "UPDATE_CURRENT_STOP",
+								payload: JSON.stringify(
+									state?.state.stops[parsedMessage.index]
+								),
+							});
+						}
 					}
 
 					state?.dispatch({
@@ -73,6 +78,12 @@ export const App = () => {
 						payload: String(parsedMessage.speed),
 					});
 					break;
+				case "PLAY_IMAGE":
+					// console.log(parsedMessage);
+					state?.dispatch({
+						type: "UPDATE_CONTENT",
+						payload: JSON.stringify(parsedMessage),
+					});
 			}
 		}
 	}, [lastMessage]);
@@ -81,13 +92,13 @@ export const App = () => {
 		<div className="display">
 			<RoutesDisplay />
 			<Content
-				type="img"
-				image={{
-					type: "PLAY_IMAGE",
-					src: "/sdcard/intro/intro_default.png",
-					label: "Intro",
-					length: 20,
-				}}
+			// type="img"
+			// image={{
+			// 	type: "PLAY_IMAGE",
+			// 	src: "/sdcard/intro/intro_default.png",
+			// 	label: "Intro",
+			// 	length: 20,
+			// }}
 			/>
 		</div>
 	);

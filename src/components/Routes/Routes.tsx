@@ -25,22 +25,24 @@ export const Routes: React.FC<RoutesProps> = ({ type }) => {
 		stopTimes![0].index + maxStops
 	);
 	return (
-		<div
-			key={type}
-			className={`routes ${type === "moving" ? "moving" : ""} ${
-				isLast ? "last-stops" : ""
-			} `}
-		>
-			{displayedStops.map((stop, index) => {
-				return (
-					<Stop
-						key={stop.index}
-						time={String(stopTimes![index].time)}
-						name={{ rus: stop.nameRus, eng: stop.nameEng }}
-					/>
-				);
-			})}
-			<div className={`line ${isLast ? "last-stops" : ""}`}></div>
-		</div>
+		displayedStops && (
+			<div
+				key={type}
+				className={`routes ${type === "moving" ? "moving" : ""} ${
+					isLast ? "last-stops" : ""
+				} `}
+			>
+				{displayedStops.map((stop, index) => {
+					return (
+						<Stop
+							key={stop.index}
+							time={String(stopTimes![index].time)}
+							name={{ rus: stop.nameRus, eng: stop.nameEng }}
+						/>
+					);
+				})}
+				<div className={`line ${isLast ? "last-stops" : ""}`}></div>
+			</div>
+		)
 	);
 };
