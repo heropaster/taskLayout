@@ -4,32 +4,11 @@ import useWebSocket from "react-use-websocket";
 import { RoutesDisplay } from "./components/RoutesDisplay/RoutesDisplay";
 import { Content } from "./components/Content/Content";
 
-import { useDataStore } from "./store";
 import { useDataContext } from "./DataContext";
-/* #ERROR Почему-то ошибка возникла несколько раз когда удалял setAction,
- сейчас вроде нету, незнаю с чем может быть связана
-, но в ошибке указывалось STOP_TIMES, хотя его не трогал */
+
 export const App = () => {
 	const state = useDataContext();
-	const [
-		stops,
-		setRoute,
-		setStops,
-		setCurrentStop,
-		setStopTimes,
-		// setSpeed,
-		// setAction,
-		// setCurrentStopIndex,
-	] = useDataStore((state) => [
-		state.stops,
-		state.setRoute,
-		state.setStops,
-		state.setCurrentStop,
-		state.setStopTimes,
-		// state.setSpeed,
-		// state.setAction,
-		// state.setCurrentStopIndex,
-	]);
+
 	const socketUrl = import.meta.env.VITE_SOCKET_URL;
 	const { lastMessage } = useWebSocket(socketUrl, {
 		onOpen: () => console.log("opened"),
@@ -38,36 +17,44 @@ export const App = () => {
 			const parsedMessage = JSON.parse(event.data);
 			switch (parsedMessage.type) {
 				case "ROUTE": {
-					setRoute(parsedMessage);
-					setStops(parsedMessage.stops);
-					// setCurrentStop(parsedMessage.stops[0]);
+					state?.dispatch({
+						type: "UPDATE_STOPS",
+						payload: JSON.stringify(parsedMessage.stops),
+					});
 					state?.dispatch({
 						type: "UPDATE_CURRENT_STOP",
 						payload: JSON.stringify(parsedMessage.stops[0]),
+					});
+					state?.dispatch({
+						type: "UPDATE_ROUTE",
+						payload: JSON.stringify(parsedMessage),
 					});
 					console.log(15);
 					break;
 				}
 				case "STOP_END":
 				case "STOP_BEGIN":
-					// setCurrentStopIndex(parsedMessage.index);
-					state?.dispatch({
-						type: "UPDATE_INDEX",
-						payload: String(parsedMessage.index),
-					});
-					// setCurrentStop(stops[parsedMessage.index]);
-					state?.dispatch({
-						type: "UPDATE_CURRENT_STOP",
-						payload: JSON.stringify(stops[parsedMessage.index]),
-					});
-					// setAction(parsedMessage.type);
+					if (state?.state.stops.length !== 0) {
+						state?.dispatch({
+							type: "UPDATE_INDEX",
+							payload: String(parsedMessage.index),
+						});
+						state?.dispatch({
+							type: "UPDATE_CURRENT_STOP",
+							payload: JSON.stringify(state?.state.stops[parsedMessage.index]),
+						});
+					}
+
 					state?.dispatch({
 						type: "UPDATE_ACTION",
 						payload: parsedMessage.type,
 					});
 					break;
 				case "STOP_TIMES":
-					setStopTimes(parsedMessage.stops);
+					state?.dispatch({
+						type: "UPDATE_STOP_TIMES",
+						payload: JSON.stringify(parsedMessage.stops),
+					});
 					break;
 			}
 		},
@@ -82,7 +69,6 @@ export const App = () => {
 					break;
 
 				case "SPEED":
-					// setSpeed(String(parsedMessage.speed));
 					state?.dispatch({
 						type: "UPDATE_SPEED",
 						payload: String(parsedMessage.speed),
@@ -90,17 +76,7 @@ export const App = () => {
 					break;
 			}
 		}
-	}, [
-		lastMessage,
-		// setAction,
-		setCurrentStop,
-		// setCurrentStopIndex,
-		setRoute,
-		// setSpeed,
-		setStopTimes,
-		setStops,
-		stops,
-	]);
+	}, [lastMessage]);
 
 	return (
 		<div className="display">

@@ -1,27 +1,25 @@
 import React from "react";
 import "./Routes.scss";
 
-import { useDataStore } from "../../store";
 import { Stop } from "../Stop/Stop";
+import { useDataContext } from "../../DataContext";
 interface RoutesProps {
 	type: string;
 }
 export const Routes: React.FC<RoutesProps> = ({ type }) => {
-	const [stopTimes, stops] = useDataStore((state) => [
-		state.stopTimes,
-		state.stops,
-	]);
+	const state = useDataContext();
+	const stopTimes = state?.state.stopTimes;
+	const stops = state?.state.stops;
 	const maxStops = type === "STOP_END" ? 4 : 3;
 
-	const isLast = stopTimes.length <= 2 || stopTimes.length === 3;
-	const showLast = stopTimes.length === 0;
+	const isLast = stopTimes!.length <= 2 || stopTimes!.length === 3;
+	const showLast = stopTimes!.length === 0;
 	if (showLast) return <div className="last">Конечная</div>;
 
-	const displayedStops = stops.slice(
-		stopTimes[0].index,
-		stopTimes[0].index + maxStops
+	const displayedStops = stops!.slice(
+		stopTimes![0].index,
+		stopTimes![0].index + maxStops
 	);
-
 	return (
 		<div
 			key={type}
@@ -33,7 +31,7 @@ export const Routes: React.FC<RoutesProps> = ({ type }) => {
 				return (
 					<Stop
 						key={stop.index}
-						time={String(stopTimes[index].time)}
+						time={String(stopTimes![index].time)}
 						name={{ rus: stop.nameRus, eng: stop.nameEng }}
 					/>
 				);
