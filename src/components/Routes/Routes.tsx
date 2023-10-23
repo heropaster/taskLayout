@@ -1,11 +1,15 @@
 import React from "react";
+
 import "./Routes.scss";
 
 import { Stop } from "../Stop/Stop";
+
 import { useDataContext } from "../../DataContext";
+
 interface RoutesProps {
 	type: string;
 }
+
 export const Routes: React.FC<RoutesProps> = ({ type }) => {
 	const state = useDataContext();
 	const stopTimes = state?.state.stopTimes;

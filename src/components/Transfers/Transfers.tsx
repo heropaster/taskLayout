@@ -1,8 +1,10 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import { TransferItem } from "./TransferItem/TransferItem";
 
-import "./Transfers.scss";
 import { useDataContext } from "../../DataContext";
+
+import "./Transfers.scss";
+
 export const Transfers = () => {
 	const state = useDataContext();
 	const stops = state?.state.stops;

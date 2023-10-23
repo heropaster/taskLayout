@@ -1,9 +1,11 @@
 import React from "react";
 
-import "./Stop.scss";
 import { StopName } from "../StopName/StopName";
 import { ArrivalTime } from "../ArrivalTIme/ArrivalTime";
 import { StopNameT } from "../../types/StopName";
+
+import "./Stop.scss";
+
 interface StopProps {
 	name: StopNameT;
 	time: string;

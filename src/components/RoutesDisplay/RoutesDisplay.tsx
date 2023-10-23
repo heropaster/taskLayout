@@ -1,11 +1,11 @@
-// import { useDataStore } from "../../store";
 import { RouteHeader } from "./RouteHeader/RouteHeader";
 import { InfoPanel } from "../InfoPanel/InfoPanel";
 import { Routes } from "../Routes/Routes";
 import { Transfers } from "../Transfers/Transfers";
 
-import "./RoutesDisplay.scss";
 import { useDataContext } from "../../DataContext";
+
+import "./RoutesDisplay.scss";
 
 export const RoutesDisplay = () => {
 	const state = useDataContext();

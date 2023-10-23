@@ -1,5 +1,6 @@
 import "./Reception.scss";
 import image from "../../assets/images/ReceptionImage.png";
+
 export const Reception = () => {
 	return (
 		<div className="pulkovo__reception reception">

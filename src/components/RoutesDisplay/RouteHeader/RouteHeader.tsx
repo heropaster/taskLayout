@@ -3,24 +3,23 @@ import React from "react";
 import { StopName } from "../../StopName/StopName";
 import { RouteNumber } from "../../RouteNumber/RouteNumber";
 import { Path } from "../../Path/Path";
+
 import { useDataContext } from "../../../DataContext";
+
 import "./RouteHeader.scss";
-// import { useDataStore } from "../../../store";
+
 
 interface RouteHeaderProps {
 	type: string;
 }
-export const RouteHeader: React.FC<RouteHeaderProps> = ({ type }) => {
-	// const [stops] = useDataStore((state) => [
-	// 	state.stops,
-	// 	// state.currentStop,
-	// 	// state.route,
-	// ]);
 
+export const RouteHeader: React.FC<RouteHeaderProps> = ({ type }) => {
 	const state = useDataContext();
+
 	const currentStop = state?.state.currentStop;
 	const route = state?.state.route;
 	const stops = state?.state.stops;
+
 	return (
 		<div
 			key={type}

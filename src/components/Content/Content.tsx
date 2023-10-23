@@ -12,6 +12,7 @@ interface ContentProps {
 	type: string;
 	image?: { type: string; src: string; label: string; length: number };
 }
+
 export const Content: React.FC<ContentProps> = ({
 	type,
 	image = {

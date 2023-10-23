@@ -1,6 +1,9 @@
 import React from "react";
-import "./TransferItem.scss";
+
 import { RouteNumber } from "../../RouteNumber/RouteNumber";
+
+import "./TransferItem.scss";
+
 interface TransferItemProps {
 	transport: string;
 	transfers: string[];

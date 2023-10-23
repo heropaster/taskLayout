@@ -1,7 +1,9 @@
 import React from "react";
-import departure from "../../assets/icons/departure.svg";
+
 import "./Table.scss";
 import arrival from "../../assets/icons/arrival.svg";
+import departure from "../../assets/icons/departure.svg";
+
 interface TableProps {
 	table: {
 		time: string;

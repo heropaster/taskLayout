@@ -1,5 +1,7 @@
 import React from "react";
+
 import "./StopName.scss";
+
 interface StopNameProps {
 	type: string | undefined;
 	name: { rus?: string; eng?: string };

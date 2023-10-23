@@ -13,7 +13,6 @@ export const App = () => {
 	const { lastMessage } = useWebSocket(socketUrl, {
 		onOpen: () => console.log("opened"),
 		onMessage: (event) => {
-			// console.log(event);
 			const parsedMessage = JSON.parse(event.data);
 			switch (parsedMessage.type) {
 				case "ROUTE": {
