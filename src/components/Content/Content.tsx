@@ -10,6 +10,7 @@ import inData from "../../data/pulkovoIn.json";
 import { useDataContext } from "../../DataContext";
 
 export const Content = () => {
+	const socketIP = import.meta.env.VITE_SOCKET_URL;
 	const state = useDataContext();
 	const content = state?.state.content;
 	const [currentScreen, setCurrentScreen] = useState("DEPARTURE");
@@ -40,12 +41,23 @@ export const Content = () => {
 				<div
 					className="display__info display__info--image"
 					style={{
-						backgroundImage: `url(http://192.168.100.95:8080${content?.src})`,
+						backgroundImage: `url(http://${socketIP.trim()}:8080${
+							content?.src
+						})`,
 					}}
 				></div>
 			);
 		}
-
+		case "PLAY_VIDEO": {
+			return (
+				<video>
+					<source
+						src={`http://${socketIP.trim()}:8080${content?.src}`}
+						type="video/mp4"
+					/>
+				</video>
+			);
+		}
 		case "PULKOVO": {
 			return (
 				<div className="display__info display__info--pulkovo">
