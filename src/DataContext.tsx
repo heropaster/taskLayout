@@ -3,6 +3,8 @@ import type { Stop } from "./types/Stop";
 import type { Route } from "./types/Route";
 import type { StopTime } from "./types/StopTime";
 import type { Content } from "./types/Content";
+import type { PulkovoT } from "./types/PulkovoT";
+
 // Типизация действий
 type DataAction = {
 	type: string;
@@ -19,6 +21,8 @@ interface DataContextState {
 	stops: Stop[];
 	stopTimes: StopTime[];
 	content: Content | undefined;
+	isPulkovo: number;
+	pulkovo: PulkovoT | undefined;
 }
 type Context = {
 	state: DataContextState;
@@ -47,6 +51,10 @@ function dataReducer(
 			return { ...state, stopTimes: JSON.parse(action.payload) };
 		case "UPDATE_CONTENT":
 			return { ...state, content: JSON.parse(action.payload) };
+		case "SWITCH_CONTENT":
+			return { ...state, isPulkovo: Number(action.payload) };
+		case "UPDATE_PULKOVO":
+			return { ...state, pulkovo: JSON.parse(action.payload) };
 		default:
 			return state;
 	}
@@ -66,6 +74,8 @@ export const DataContextProvider: React.FC<{ children: ReactNode }> = ({
 		stops: [],
 		stopTimes: [],
 		content: undefined,
+		isPulkovo: 0,
+		pulkovo: undefined,
 	});
 
 	return (

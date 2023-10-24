@@ -1,32 +1,5 @@
 .reception {
-	padding: 8px 32px;
-	&__title {
-		font-size: 28px;
-		color: #403939;
-		line-height: 150%;
-		font-family: var(--bold);
-		font-weight: 700;
-		border-bottom: 2px solid #d9d9d9;
+	img {
+		max-width: 960px;
 	}
-}
-.content {
-	&__heading {
-		margin-top: 16px;
-		padding: 10px 32px;
-		background: #b6e5ff;
-		h2 {
-			font-size: 40px;
-			font-family: var(--bold);
-			font-weight: 700;
-		}
-		h3 {
-			font-size: 28px;
-			line-height: 150%;
-			font-family: var(--medium);
-			font-weight: 500;
-		}
-	}
-}
-.image-container {
-	margin-top: 38px;
 }
