@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { Reception } from "../Reception/Reception";
 import { Table } from "../Table/Table";
+import { Video } from "../Video/Video";
 
 import "./Content.scss";
 
@@ -34,8 +35,8 @@ export const Content = () => {
 			}
 		}, 3000);
 	}, [displayType]);
-
-	switch (content?.type) {
+	const type = "PLAY_VIDEO";
+	switch (type) {
 		case "PLAY_IMAGE": {
 			return (
 				<div
@@ -49,14 +50,7 @@ export const Content = () => {
 			);
 		}
 		case "PLAY_VIDEO": {
-			return (
-				<video>
-					<source
-						src={`http://${socketIP.trim()}:8080${content?.src}`}
-						type="video/mp4"
-					/>
-				</video>
-			);
+			return <Video />;
 		}
 		case "PULKOVO": {
 			return (
