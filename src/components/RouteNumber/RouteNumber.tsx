@@ -7,7 +7,12 @@ interface RouteNumberProps {
 }
 
 export const RouteNumber: React.FC<RouteNumberProps> = ({ src }) => {
+	const socketIP = import.meta.env.VITE_SOCKET_URL;
 	return (
-		<img className="route" src={`http://192.168.100.95:8080/${src}`} alt="" />
+		<img
+			className="route"
+			src={`http://${socketIP.trim()}:8080/${src}`}
+			alt=""
+		/>
 	);
 };

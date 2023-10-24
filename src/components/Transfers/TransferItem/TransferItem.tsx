@@ -14,11 +14,12 @@ export const TransferItem: React.FC<TransferItemProps> = ({
 	transfers,
 	name,
 }) => {
+	const socketIP = import.meta.env.VITE_SOCKET_URL;
 	return (
 		<div className="transfer-item">
 			<img
 				className="transport"
-				src={`http://192.168.100.95:8080${transport}`}
+				src={`http://${socketIP.trim()}:8080${transport}`}
 				alt="transport"
 			/>
 			<div className="stop-transfers">
@@ -31,7 +32,6 @@ export const TransferItem: React.FC<TransferItemProps> = ({
 						<RouteNumber src={item} key={index} />
 					))}
 				</div>
-				{/* Для метро(В мок дате нет данных по пересадкам в метро, поэтому сымитировал) */}
 				{name && (
 					<div className="name-container">
 						<h3 className="ru">{name.ru}</h3>
