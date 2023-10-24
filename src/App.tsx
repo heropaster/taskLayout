@@ -5,12 +5,12 @@ import { RoutesDisplay } from "./components/RoutesDisplay/RoutesDisplay";
 import { Content } from "./components/Content/Content";
 
 import { useDataContext } from "./DataContext";
-
+import { endContent } from "./utils/contentEnd";
 export const App = () => {
 	const state = useDataContext();
 
 	const socketUrl = import.meta.env.VITE_SOCKET_URL;
-	const { lastMessage } = useWebSocket(socketUrl, {
+	const { lastMessage, sendMessage } = useWebSocket(socketUrl, {
 		onOpen: () => console.log("opened"),
 		onMessage: (event) => {
 			const parsedMessage = JSON.parse(event.data);
@@ -77,11 +77,26 @@ export const App = () => {
 					});
 					break;
 				case "PLAY_IMAGE":
-					// console.log(parsedMessage);
 					state?.dispatch({
 						type: "UPDATE_CONTENT",
 						payload: JSON.stringify(parsedMessage),
 					});
+					endContent(
+						parsedMessage.length * 1000,
+						`http://192.168.100.95:8080${parsedMessage.src}`
+					)
+						.then(() => {
+							// sendMessage(
+							// 	JSON.stringify({
+							// 		type: "COMPLETE",
+							// 		label: parsedMessage.label,
+							// 	})
+							// );
+							return "Отправил";
+						})
+						.then((data) => {
+							console.log(data);
+						});
 			}
 		}
 	}, [lastMessage]);
