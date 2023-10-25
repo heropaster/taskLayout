@@ -1,13 +1,9 @@
-import { useEffect, useState } from "react";
-
 import { Reception } from "../Reception/Reception";
 import { Table } from "../Table/Table";
 import { Video } from "../Video/Video";
 
 import "./Content.scss";
 
-import outData from "../../data/pulkovoOut.json";
-import inData from "../../data/pulkovoIn.json";
 import { useDataContext } from "../../DataContext";
 
 export const Content = () => {
@@ -18,27 +14,6 @@ export const Content = () => {
 	const content = state?.state.content;
 	const pulkovo = state?.state.pulkovo;
 
-	const [currentScreen, setCurrentScreen] = useState("DEPARTURE");
-	const [currentTable, setCurrentTable] = useState(outData.contents);
-	const [displayType, setDisplayType] = useState("table");
-
-	useEffect(() => {
-		setTimeout(() => {
-			if (displayType === "table") {
-				if (currentScreen === "DEPARTURE") {
-					setCurrentScreen("ARRIVAL");
-					setCurrentTable(inData.contents);
-				} else {
-					setCurrentScreen("DEPARTURE");
-					setCurrentTable(outData.contents);
-				}
-
-				setDisplayType("reception");
-			} else {
-				setDisplayType("table");
-			}
-		}, 3000);
-	}, [displayType]);
 	switch (isPulkovo) {
 		case 0:
 			switch (content?.type) {
@@ -64,14 +39,14 @@ export const Content = () => {
 				case "ARRIVAL": {
 					return (
 						<div className="display__info display__info--pulkovo">
-							<Table table={currentTable} screen={currentScreen} />
+							<Table table={pulkovo.contents} screen="ARRIVAL" />
 						</div>
 					);
 				}
 				case "DEPARTURE": {
 					return (
 						<div className="display__info display__info--pulkovo">
-							<Table table={currentTable} screen={currentScreen} />
+							<Table table={pulkovo.contents} screen="DEPARTURE" />
 						</div>
 					);
 				}

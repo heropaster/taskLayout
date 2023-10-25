@@ -9,56 +9,144 @@
 			"direction": "Москва (VKO)",
 			"flightNumber": "FV 6034",
 			"status": "Прибыл",
-			"company": "Авиалинии",
-			"airplaneType": "B238"
+			"airline": "Авиалинии",
+			"aircraftType": "B238"
 		},
 		{
 			"time": "01:29",
 			"direction": "Волгоград",
 			"flightNumber": "FV 6034",
 			"status": "Прибыл",
-			"company": "Air Astana",
-			"airplaneType": "B738"
+			"airline": "Air Astana",
+			"aircraftType": "B738"
 		},
 		{
 			"time": "01:29",
 			"direction": "Минеральные воды",
 			"flightNumber": "FV 6034",
 			"status": "Прибыл",
-			"company": "Аэрофлот",
-			"airplaneType": "DC38"
+			"airline": "Аэрофлот",
+			"aircraftType": "DC38"
 		},
 		{
 			"time": "01:29",
 			"direction": "Название длинное, в две строки",
 			"flightNumber": "FV 6034",
 			"status": "Прибыл",
-			"company": "Россия",
-			"airplaneType": "EE38"
+			"airline": "Россия",
+			"aircraftType": "EE38"
 		},
 		{
 			"time": "01:29",
 			"direction": "Сочи",
 			"flightNumber": "FV 6034",
 			"status": "Прибыл",
-			"company": "S7",
-			"airplaneType": "AC38"
+			"airline": "S7",
+			"aircraftType": "AC38"
 		},
 		{
 			"time": "01:29",
 			"direction": "Самара",
 			"flightNumber": "FV 6034",
 			"status": "Прибыл",
-			"company": "AZAL",
-			"airplaneType": "14BB"
+			"airline": "AZAL",
+			"aircraftType": "14BB"
 		},
 		{
 			"time": "01:29",
 			"direction": "Гянджа",
 			"flightNumber": "FV 6034",
 			"status": "Прибыл",
-			"company": "Победа",
-			"airplaneType": "C228"
+			"airline": "Победа",
+			"aircraftType": "C228"
+		},
+		{
+			"time": "01:29",
+			"direction": "Москва (VKO)",
+			"flightNumber": "FV 6034",
+			"status": "Прибыл",
+			"airline": "Авиалинии",
+			"aircraftType": "B238"
+		},
+		{
+			"time": "01:29",
+			"direction": "Волгоград",
+			"flightNumber": "FV 6034",
+			"status": "Прибыл",
+			"airline": "Air Astana",
+			"aircraftType": "B738"
+		},
+		{
+			"time": "01:29",
+			"direction": "Минеральные воды",
+			"flightNumber": "FV 6034",
+			"status": "Прибыл",
+			"airline": "Аэрофлот",
+			"aircraftType": "DC38"
+		},
+		{
+			"time": "01:29",
+			"direction": "Название длинное, в две строки",
+			"flightNumber": "FV 6034",
+			"status": "Прибыл",
+			"airline": "Россия",
+			"aircraftType": "EE38"
+		},
+		{
+			"time": "01:29",
+			"direction": "Сочи",
+			"flightNumber": "FV 6034",
+			"status": "Прибыл",
+			"airline": "S7",
+			"aircraftType": "AC38"
+		},
+		{
+			"time": "01:29",
+			"direction": "Самара",
+			"flightNumber": "FV 6034",
+			"status": "Прибыл",
+			"airline": "AZAL",
+			"aircraftType": "14BB"
+		},
+		{
+			"time": "01:29",
+			"direction": "Гянджа",
+			"flightNumber": "FV 6034",
+			"status": "Прибыл",
+			"airline": "Победа",
+			"aircraftType": "C228"
+		},
+		{
+			"time": "01:29",
+			"direction": "Москва (VKO)",
+			"flightNumber": "FV 6034",
+			"status": "Прибыл",
+			"airline": "Авиалинии",
+			"aircraftType": "B238"
+		},
+		{
+			"time": "01:29",
+			"direction": "Волгоград",
+			"flightNumber": "FV 6034",
+			"status": "Прибыл",
+			"airline": "Air Astana",
+			"aircraftType": "B738"
+		},
+		{
+			"time": "01:29",
+			"direction": "Минеральные воды",
+			"flightNumber": "FV 6034",
+			"status": "Прибыл",
+			"airline": "Аэрофлот",
+			"aircraftType": "DC38"
+		},
+		{
+			"time": "01:29",
+			"direction": "Название длинное, в две строки",
+			"flightNumber": "FV 6034",
+			"status": "Прибыл",
+			"airline": "Россия",
+			"aircraftType": "EE38"
 		}
 	]
 }
