@@ -64,7 +64,7 @@ export const App = () => {
 	useEffect(() => {
 		if (lastMessage) {
 			const parsedMessage = JSON.parse(lastMessage.data);
-			// console.log(parsedMessage);
+			console.log(parsedMessage);
 			switch (parsedMessage.type) {
 				case "ROUTE":
 					// console.log("ROUTE");
@@ -78,19 +78,22 @@ export const App = () => {
 					break;
 				case "PLAY_IMAGE":
 				case "PLAY_VIDEO":
-					state?.dispatch({
-						type: "SWITCH_CONTENT",
-						payload: "0",
-					});
-					state?.dispatch({
-						type: "UPDATE_CONTENT",
-						payload: JSON.stringify(parsedMessage),
-					});
+					// console.log(parsedMessage);
 					endContent(
 						parsedMessage.length * 1000,
 						`http://${socketIP.trim()}:8080${parsedMessage.src}`,
 						parsedMessage.type
 					)
+						?.then(() => {
+							state?.dispatch({
+								type: "SWITCH_CONTENT",
+								payload: "0",
+							});
+							state?.dispatch({
+								type: "UPDATE_CONTENT",
+								payload: JSON.stringify(parsedMessage),
+							});
+						})
 						?.catch((error) => {
 							console.log(error);
 							// sendMessage(
