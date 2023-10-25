@@ -9,7 +9,7 @@ export const endContent = (duration: number, src: string, type: string) => {
 					resolve("Загрузилось");
 				};
 				image.onerror = (error) => {
-					reject("Ошибка" + error);
+					reject(error);
 				};
 			})
 				.then(() => {
@@ -19,6 +19,9 @@ export const endContent = (duration: number, src: string, type: string) => {
 				})
 				.then((data) => {
 					return data;
+				})
+				.catch((error) => {
+					throw new Error(error);
 				});
 		case "PLAY_VIDEO":
 			return new Promise((resolve, reject) => {
@@ -28,7 +31,7 @@ export const endContent = (duration: number, src: string, type: string) => {
 					resolve("Загрузилось");
 				};
 				video.onerror = (error) => {
-					reject("Ошибка" + error);
+					reject(error);
 				};
 			})
 				.then(() => {
@@ -36,8 +39,11 @@ export const endContent = (duration: number, src: string, type: string) => {
 						setTimeout(resolve, duration);
 					});
 				})
-				.then(() => {
-					return;
+				.then((data) => {
+					return data;
+				})
+				.catch((error) => {
+					throw new Error(error);
 				});
 	}
 };

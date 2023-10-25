@@ -14,7 +14,6 @@ export const App = () => {
 		onOpen: () => console.log("opened"),
 		onMessage: (event) => {
 			const parsedMessage = JSON.parse(event.data);
-			console.log(parsedMessage);
 			switch (parsedMessage.type) {
 				case "ROUTE": {
 					state?.dispatch({
@@ -68,7 +67,7 @@ export const App = () => {
 			// console.log(parsedMessage);
 			switch (parsedMessage.type) {
 				case "ROUTE":
-					console.log("ROUTE");
+					// console.log("ROUTE");
 					break;
 
 				case "SPEED":
@@ -92,6 +91,17 @@ export const App = () => {
 						`http://${socketIP.trim()}:8080${parsedMessage.src}`,
 						parsedMessage.type
 					)
+						?.catch((error) => {
+							console.log(error);
+							// sendMessage(
+							// 	JSON.stringify({
+							// 		type: "ERROR",
+							// 		label: parsedMessage.label,
+							// 	})
+							// );
+							console.log("Ошибка");
+							throw error;
+						})
 						?.then(() => {
 							// sendMessage(
 							// 	JSON.stringify({
@@ -99,11 +109,9 @@ export const App = () => {
 							// 		label: parsedMessage.label,
 							// 	})
 							// );
-							return "Отправил";
-						})
-						.then((data) => {
-							console.log(data);
+							console.log("Отправил");
 						});
+
 					break;
 				case "PULKOVO":
 					state?.dispatch({

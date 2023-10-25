@@ -13,6 +13,7 @@ export const Table: React.FC<TableProps> = ({ table, screen }) => {
 	const maxFlights = 7;
 	const pages = splitArray(table, maxFlights);
 	const [currentPage, setCurrentPage] = useState(0);
+
 	useEffect(() => {
 		const interval = setInterval(() => {
 			if (currentPage < pages.length - 1) {
