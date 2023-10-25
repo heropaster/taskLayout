@@ -19,7 +19,7 @@
 		font-size: 24px;
 		font-family: var(--regular);
 		font-weight: 400;
-		line-height: 18p;
+		line-height: 18px;
 	}
 	.circle-container {
 		box-sizing: content-box;
@@ -50,5 +50,16 @@
 	}
 	to {
 		opacity: 1;
+	}
+}
+@media (min-width: 2781px) {
+	.arrival {
+		.time {
+			font-size: 46px;
+		}
+		.minutes {
+			font-size: 30px;
+			line-height: 26px;
+		}
 	}
 }

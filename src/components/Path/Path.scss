@@ -1,3 +1,13 @@
 .path {
 	width: max-content;
+	font-size: 28px;
+	color: #403939;
+	font-family: var(--bold);
+	font-weight: 700;
+	line-height: 150%;
+}
+@media (min-width: 2781px) {
+	.path {
+		font-size: 32px;
+	}
 }

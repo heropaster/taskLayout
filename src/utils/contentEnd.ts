@@ -1,5 +1,4 @@
 export const endContent = (duration: number, src: string, type: string) => {
-	console.log(type);
 	switch (type) {
 		case "PLAY_IMAGE":
 			return new Promise((resolve, reject) => {

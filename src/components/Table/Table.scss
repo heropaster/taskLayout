@@ -12,7 +12,8 @@ table {
 			line-height: 100%;
 			color: #334743;
 			text-align: left;
-			&:nth-child(5) {
+			&:nth-child(5),
+			&:nth-child(6) {
 				text-align: center;
 				padding-bottom: 14px;
 			}
@@ -65,8 +66,16 @@ table {
 				font-weight: 700;
 			}
 			&.flight__status {
+				text-align: center;
 				width: 180px;
 				font-size: 22px;
+				border-radius: 2px;
+				&.arrived {
+					background-color: #c9ffd5;
+				}
+				&.delayed {
+					background-color: #ffcbcb;
+				}
 			}
 		}
 	}
@@ -77,5 +86,47 @@ table {
 	}
 	to {
 		transform: translateX(0);
+	}
+}
+
+@media (min-width: 2781px) {
+	table {
+		width: 100%;
+		thead {
+			th {
+				font-size: 26px;
+			}
+		}
+		tbody {
+			max-height: 664px;
+			tr {
+				max-height: 93px;
+				height: 93px;
+			}
+			td {
+				&.flight__time {
+					font-size: 30px;
+				}
+				&.flight__number {
+					width: 140px;
+					font-size: 28px;
+					div {
+						padding: 5px;
+					}
+				}
+				&.flight__direction {
+					font-size: 32px;
+				}
+				&.flight__company {
+					font-size: 30px;
+				}
+				&.flight__airplane-type {
+					font-size: 30px;
+				}
+				&.flight__status {
+					font-size: 28px;
+				}
+			}
+		}
 	}
 }

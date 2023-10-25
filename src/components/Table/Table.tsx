@@ -63,7 +63,13 @@ export const Table: React.FC<TableProps> = ({ table, screen }) => {
 							<td className="flight__direction">{row.direction}</td>
 							<td className="flight__company">{row.airline}</td>
 							<td className="flight__airplane-type">{row.aircraftType}</td>
-							<td className="flight__status">{row.status}</td>
+							<td
+								className={`flight__status ${
+									row.status === "Прибыл" ? "arrived" : ""
+								} ${row.status === "Задерживается" ? "delayed" : ""} `}
+							>
+								{row.status}
+							</td>
 						</tr>
 					))}
 				</tbody>

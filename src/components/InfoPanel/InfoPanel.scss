@@ -18,3 +18,13 @@
 		line-height: 18px;
 	}
 }
+
+@media (min-width: 2781px) {
+	.panel {
+		width: 520px;
+		padding: 8px 24px;
+		span {
+			font-size: 30px;
+		}
+	}
+}

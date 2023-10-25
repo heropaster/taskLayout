@@ -23,3 +23,20 @@
 		}
 	}
 }
+
+@media (min-width: 2781px) {
+	.stop-title {
+		.stop-name {
+			font-size: 44px;	
+			&.route-stop {
+				font-size: 38px;
+			}
+			&.stop-name--eng {
+				font-size: 34px;
+				&.route-stop--eng {
+					font-size: 32px;
+				}
+			}
+		}
+	}
+}
