@@ -14,7 +14,7 @@ export const Content = () => {
 	const content = state?.state.content;
 	const pulkovo = state?.state.pulkovo;
 	const stream = state?.state.stream;
-
+	console.log(contentType);
 	switch (contentType) {
 		case "assets":
 			switch (content?.type) {
@@ -65,7 +65,7 @@ export const Content = () => {
 			}
 			break;
 		case "stream": {
-			return <Stream src={stream!.url} />;
+			return <Stream src={stream!.url} length={stream!.length} />;
 		}
 	}
 };

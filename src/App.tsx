@@ -38,6 +38,7 @@ export const App = () => {
 						type: "UPDATE_ROUTE",
 						payload: JSON.stringify(parsedMessage),
 					});
+
 					break;
 				}
 
