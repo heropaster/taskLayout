@@ -87,7 +87,7 @@ export const DataContextProvider: React.FC<{ children: ReactNode }> = ({
 		// Заглушка для теста
 		stream: {
 			type: "PLAY_STREAM",
-			url: "https://www.youtube.com/watch?v=jfKfPfyJRdk",
+			url: "https://www.youtube.com/watch?v=4xDzrJKXOOY",
 			format: "aasdasd",
 			label: "asdasd",
 			length: "15",

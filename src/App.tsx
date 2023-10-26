@@ -24,6 +24,7 @@ export const App = () => {
 			const parsedMessage = JSON.parse(event.data);
 			switch (parsedMessage.type) {
 				case "ROUTE": {
+					console.log(parsedMessage);
 					state?.dispatch({
 						type: "UPDATE_STOPS",
 						payload: JSON.stringify(parsedMessage.stops),

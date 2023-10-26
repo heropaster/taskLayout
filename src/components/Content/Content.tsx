@@ -14,7 +14,6 @@ export const Content = () => {
 	const content = state?.state.content;
 	const pulkovo = state?.state.pulkovo;
 	const stream = state?.state.stream;
-	console.log(contentType);
 	switch (contentType) {
 		case "assets":
 			switch (content?.type) {
@@ -43,7 +42,11 @@ export const Content = () => {
 							key={pulkovo?.subtype}
 							className="display__info display__info--pulkovo"
 						>
-							<Table table={pulkovo.contents} screen="ARRIVAL" />
+							<Table
+								table={pulkovo.contents}
+								screen="ARRIVAL"
+								duration={pulkovo.duration}
+							/>
 						</div>
 					);
 				}
@@ -53,7 +56,11 @@ export const Content = () => {
 							key={pulkovo?.subtype}
 							className="display__info display__info--pulkovo"
 						>
-							<Table table={pulkovo.contents} screen="DEPARTURE" />
+							<Table
+								table={pulkovo.contents}
+								screen="DEPARTURE"
+								duration={pulkovo.duration}
+							/>
 						</div>
 					);
 				}

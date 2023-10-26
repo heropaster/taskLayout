@@ -8,18 +8,19 @@ import { Flight } from "../../types/Flight";
 interface TableProps {
 	table: Flight[];
 	screen: string;
+	duration: number;
 }
-export const Table: React.FC<TableProps> = ({ table, screen }) => {
+export const Table: React.FC<TableProps> = ({ table, screen, duration }) => {
 	const maxFlights = 7;
 	const pages = splitArray(table, maxFlights);
 	const [currentPage, setCurrentPage] = useState(0);
-
+	const pageDuration = Math.round((duration * 1000) / pages.length);
 	useEffect(() => {
 		const interval = setInterval(() => {
 			if (currentPage < pages.length - 1) {
 				setCurrentPage((page) => (page += 1));
 			}
-		}, 7000);
+		}, pageDuration);
 
 		return () => clearInterval(interval);
 	}, [currentPage]);
