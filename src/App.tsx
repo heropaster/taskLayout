@@ -1,15 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useWebSocket from "react-use-websocket";
 
 import { RoutesDisplay } from "./components/RoutesDisplay/RoutesDisplay";
 import { Content } from "./components/Content/Content";
+import { Video } from "./components/Video/Video";
+import { TextTicker } from "./components/TextTicker/TextTicker";
 
 import { useDataContext } from "./DataContext";
 import { endContent } from "./utils/contentEnd";
+
 export const App = () => {
 	const state = useDataContext();
+	const [isFullVideo, setisFullVideo] = useState(false);
+	const [isTicker, setIsTicker] = useState(false);
+	const [tickerText, setTickerText] = useState("");
 
+	const [videoDuration, setVideoDuration] = useState(0);
 	const socketIP = import.meta.env.VITE_SOCKET_URL;
+
 	const { lastMessage } = useWebSocket(`ws://${socketIP.trim()}:23245`, {
 		onOpen: () => console.log("opened"),
 		onMessage: (event) => {
@@ -60,7 +68,6 @@ export const App = () => {
 						type: "UPDATE_STOP_TIMES",
 						payload: JSON.stringify(parsedMessage.stops),
 					});
-
 					break;
 			}
 		},
@@ -124,6 +131,15 @@ export const App = () => {
 						type: "UPDATE_PULKOVO",
 						payload: JSON.stringify(parsedMessage),
 					});
+					break;
+				case "PLAY_VIDEO_FULL":
+					setisFullVideo(true);
+					setVideoDuration(parsedMessage.duration);
+					break;
+				case "PLAY_TICKER":
+					setIsTicker(true);
+					setTickerText(parsedMessage.text);
+					break;
 			}
 		}
 	}, [lastMessage]);
@@ -132,6 +148,16 @@ export const App = () => {
 		<div className="display">
 			<RoutesDisplay />
 			<Content />
+			{isFullVideo && (
+				<Video
+					type="full"
+					callback={() => setisFullVideo(false)}
+					duration={videoDuration * 1000}
+				/>
+			)}
+			{isTicker && (
+				<TextTicker text={tickerText} callback={() => setIsTicker(false)} />
+			)}
 		</div>
 	);
 };

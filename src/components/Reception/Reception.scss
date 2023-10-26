@@ -1,5 +1,14 @@
 .reception {
+	animation: Visible 0.3s forwards;
 	img {
 		max-width: 960px;
+	}
+}
+@keyframes Visible {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
 	}
 }

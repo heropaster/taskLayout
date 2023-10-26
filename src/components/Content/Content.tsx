@@ -30,7 +30,7 @@ export const Content = () => {
 					);
 				}
 				case "PLAY_VIDEO": {
-					return <Video />;
+					return <Video type="normal" />;
 				}
 			}
 			break;
@@ -38,14 +38,20 @@ export const Content = () => {
 			switch (pulkovo?.subtype) {
 				case "ARRIVAL": {
 					return (
-						<div className="display__info display__info--pulkovo">
+						<div
+							key={pulkovo?.subtype}
+							className="display__info display__info--pulkovo"
+						>
 							<Table table={pulkovo.contents} screen="ARRIVAL" />
 						</div>
 					);
 				}
 				case "DEPARTURE": {
 					return (
-						<div className="display__info display__info--pulkovo">
+						<div
+							key={pulkovo?.subtype}
+							className="display__info display__info--pulkovo"
+						>
 							<Table table={pulkovo.contents} screen="DEPARTURE" />
 						</div>
 					);
