@@ -36,6 +36,10 @@ export const App = () => {
 				case "STOP_END":
 				case "STOP_BEGIN":
 					state?.dispatch({
+						type: "UPDATE_CONTENT_END",
+						payload: "",
+					});
+					state?.dispatch({
 						type: "UPDATE_INDEX",
 						payload: String(parsedMessage.index),
 					});
@@ -66,10 +70,6 @@ export const App = () => {
 			const parsedMessage = JSON.parse(lastMessage.data);
 			console.log(parsedMessage);
 			switch (parsedMessage.type) {
-				case "ROUTE":
-					// console.log("ROUTE");
-					break;
-
 				case "SPEED":
 					state?.dispatch({
 						type: "UPDATE_SPEED",
@@ -78,22 +78,19 @@ export const App = () => {
 					break;
 				case "PLAY_IMAGE":
 				case "PLAY_VIDEO":
-					// console.log(parsedMessage);
+					state?.dispatch({
+						type: "SWITCH_CONTENT",
+						payload: "0",
+					});
+					state?.dispatch({
+						type: "UPDATE_CONTENT",
+						payload: JSON.stringify(parsedMessage),
+					});
 					endContent(
 						parsedMessage.length * 1000,
 						`http://${socketIP.trim()}:8080${parsedMessage.src}`,
 						parsedMessage.type
 					)
-						?.then(() => {
-							state?.dispatch({
-								type: "SWITCH_CONTENT",
-								payload: "0",
-							});
-							state?.dispatch({
-								type: "UPDATE_CONTENT",
-								payload: JSON.stringify(parsedMessage),
-							});
-						})
 						?.catch((error) => {
 							console.log(error);
 							// sendMessage(
@@ -105,14 +102,16 @@ export const App = () => {
 							console.log("Ошибка");
 							throw error;
 						})
-						?.then(() => {
-							// sendMessage(
-							// 	JSON.stringify({
-							// 		type: "COMPLETE",
-							// 		label: parsedMessage.label,
-							// 	})
-							// );
-							console.log("Отправил");
+						?.then((data) => {
+							if (data === true || state?.state.isContentEnd) {
+								// sendMessage(
+								// 	JSON.stringify({
+								// 		type: "COMPLETE",
+								// 		label: parsedMessage.label,
+								// 	})
+								// );
+								console.log("Отправил");
+							}
 						});
 
 					break;

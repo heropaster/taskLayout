@@ -4,6 +4,5 @@ export type Flight = {
 	time: string;
 	direction: string;
 	flightNumber: string;
-	// counters?: string;
 	status: string;
 };

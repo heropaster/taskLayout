@@ -1,4 +1,8 @@
-export const endContent = (duration: number, src: string, type: string) => {
+export const endContent = (
+	duration: number | boolean = false,
+	src: string,
+	type: string
+) => {
 	switch (type) {
 		case "PLAY_IMAGE":
 			return new Promise((resolve, reject) => {
@@ -11,13 +15,16 @@ export const endContent = (duration: number, src: string, type: string) => {
 					reject(error);
 				};
 			})
+
 				.then(() => {
-					return new Promise(function (resolve) {
-						setTimeout(resolve, duration);
-					});
+					if (duration === +duration) {
+						return new Promise(function (resolve) {
+							setTimeout(resolve, duration);
+						});
+					}
 				})
-				.then((data) => {
-					return data;
+				.then(() => {
+					return true;
 				})
 				.catch((error) => {
 					throw new Error(error);
@@ -34,9 +41,11 @@ export const endContent = (duration: number, src: string, type: string) => {
 				};
 			})
 				.then(() => {
-					return new Promise(function (resolve) {
-						setTimeout(resolve, duration);
-					});
+					if (duration === +duration) {
+						return new Promise(function (resolve) {
+							setTimeout(resolve, duration);
+						});
+					}
 				})
 				.then((data) => {
 					return data;

@@ -1,5 +1,4 @@
 import "./Reception.scss";
-// import image from "../../assets/images/ReceptionImage.png";
 interface ReceptionProps {
 	src: string;
 }
