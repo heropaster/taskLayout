@@ -1,7 +1,7 @@
 import { Reception } from "../Reception/Reception";
 import { Table } from "../Table/Table";
 import { Video } from "../Video/Video";
-
+import { Stream } from "../Stream/Stream";
 import "./Content.scss";
 
 import { useDataContext } from "../../DataContext";
@@ -10,12 +10,13 @@ export const Content = () => {
 	const socketIP = import.meta.env.VITE_SOCKET_URL;
 
 	const state = useDataContext();
-	const isPulkovo = state?.state.isPulkovo;
+	const contentType = state?.state.contentType;
 	const content = state?.state.content;
 	const pulkovo = state?.state.pulkovo;
+	const stream = state?.state.stream;
 
-	switch (isPulkovo) {
-		case 0:
+	switch (contentType) {
+		case "assets":
 			switch (content?.type) {
 				case "PLAY_IMAGE": {
 					return (
@@ -34,7 +35,7 @@ export const Content = () => {
 				}
 			}
 			break;
-		case 1:
+		case "pulkovo":
 			switch (pulkovo?.subtype) {
 				case "ARRIVAL": {
 					return (
@@ -62,5 +63,9 @@ export const Content = () => {
 					);
 				}
 			}
+			break;
+		case "stream": {
+			return <Stream src={stream!.url} />;
+		}
 	}
 };

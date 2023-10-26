@@ -16,6 +16,7 @@
 		"@guna81/react-ticker": "^3.4.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
+		"react-player": "^2.13.0",
 		"react-ticker": "^1.3.2",
 		"react-use-websocket": "3.0.0"
 	},

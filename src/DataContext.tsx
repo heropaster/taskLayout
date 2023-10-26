@@ -4,6 +4,7 @@ import type { Route } from "./types/Route";
 import type { StopTime } from "./types/StopTime";
 import type { Content } from "./types/Content";
 import type { PulkovoT } from "./types/PulkovoT";
+import type { Stream } from "./types/Stream";
 
 // Типизация действий
 type DataAction = {
@@ -21,9 +22,10 @@ interface DataContextState {
 	stops: Stop[];
 	stopTimes: StopTime[];
 	content: Content | undefined;
-	isPulkovo: number;
+	contentType: string;
 	pulkovo: PulkovoT | undefined;
 	isContentEnd: boolean;
+	stream: Stream | undefined;
 }
 type Context = {
 	state: DataContextState;
@@ -53,12 +55,13 @@ function dataReducer(
 		case "UPDATE_CONTENT":
 			return { ...state, content: JSON.parse(action.payload) };
 		case "SWITCH_CONTENT":
-			return { ...state, isPulkovo: Number(action.payload) };
+			return { ...state, contentType: action.payload };
 		case "UPDATE_PULKOVO":
 			return { ...state, pulkovo: JSON.parse(action.payload) };
-		case "UPDATE_CONTENT_END": {
+		case "UPDATE_CONTENT_END":
 			return { ...state, isContentEnd: Boolean(action.payload) };
-		}
+		case "UPDATE_STREAM":
+			return { ...state, stream: JSON.parse(action.payload) };
 		default:
 			return state;
 	}
@@ -78,9 +81,17 @@ export const DataContextProvider: React.FC<{ children: ReactNode }> = ({
 		stops: [],
 		stopTimes: [],
 		content: undefined,
-		isPulkovo: 0,
+		contentType: "assets",
 		pulkovo: undefined,
 		isContentEnd: false,
+		// Заглушка для теста
+		stream: {
+			type: "PLAY_STREAM",
+			url: "https://www.youtube.com/watch?v=jfKfPfyJRdk",
+			format: "aasdasd",
+			label: "asdasd",
+			length: "123",
+		},
 	});
 
 	return (

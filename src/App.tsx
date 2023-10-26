@@ -87,7 +87,7 @@ export const App = () => {
 				case "PLAY_VIDEO":
 					state?.dispatch({
 						type: "SWITCH_CONTENT",
-						payload: "0",
+						payload: "assets",
 					});
 					state?.dispatch({
 						type: "UPDATE_CONTENT",
@@ -125,7 +125,7 @@ export const App = () => {
 				case "PULKOVO":
 					state?.dispatch({
 						type: "SWITCH_CONTENT",
-						payload: "1",
+						payload: "pulkovo",
 					});
 					state?.dispatch({
 						type: "UPDATE_PULKOVO",
@@ -140,6 +140,15 @@ export const App = () => {
 					setIsTicker(true);
 					setTickerText(parsedMessage.text);
 					break;
+				case "PLAY_STREAM":
+					state?.dispatch({
+						type: "SWITCH_CONTENT",
+						payload: "stream",
+					});
+					state?.dispatch({
+						type: "UPDATE_STREAM",
+						payload: JSON.stringify(parsedMessage),
+					});
 			}
 		}
 	}, [lastMessage]);
