@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactPlayer from "react-player";
 
 import "./Stream.scss";
@@ -12,13 +12,19 @@ export const Stream: React.FC<StreamProps> = ({
 	length,
 }) => {
 	const state = useDataContext();
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			state?.dispatch({
+				type: "SWITCH_CONTENT",
+				payload: "assets",
+			});
+		}, Number(length) * 1000);
 
-	setTimeout(() => {
-		state?.dispatch({
-			type: "SWITCH_CONTENT",
-			payload: "assets",
-		});
-	}, Number(length) * 1000);
+		return () => {
+			clearTimeout(timeout);
+		};
+	}, []);
+
 	return (
 		<div className="stream-container">
 			<ReactPlayer
