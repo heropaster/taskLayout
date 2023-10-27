@@ -25,3 +25,10 @@
 		opacity: 1;
 	}
 }
+@media (min-width: 2781px) {
+	.header {
+		&--stopped {
+			height: 120px;
+		}
+	}
+}

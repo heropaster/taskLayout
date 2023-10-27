@@ -23,7 +23,7 @@ export const Table: React.FC<TableProps> = ({ table, screen, duration }) => {
 		}, pageDuration);
 
 		return () => clearInterval(interval);
-	}, [currentPage]);
+	}, [currentPage, pageDuration, pages.length]);
 	return (
 		<>
 			<div className="pulkovo__header">

@@ -38,7 +38,7 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ date, temp }) => {
 				})}
 			</span>
 			<span>{temp}</span>
-			<span>{speed} км/ч</span>
+			<span>{speed?.length === 0 ? 0 : speed} км/ч</span>
 		</div>
 	);
 };

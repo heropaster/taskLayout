@@ -28,6 +28,7 @@ export const Stream: React.FC<StreamProps> = ({
 	return (
 		<div className="stream-container">
 			<ReactPlayer
+				
 				url={src}
 				playing={true}
 				width="100%"
@@ -35,7 +36,6 @@ export const Stream: React.FC<StreamProps> = ({
 				volume={0}
 				muted={true}
 			/>
-			;
 		</div>
 	);
 };
