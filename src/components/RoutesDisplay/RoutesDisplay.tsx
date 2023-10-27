@@ -3,24 +3,24 @@ import { InfoPanel } from "../InfoPanel/InfoPanel";
 import { Routes } from "../Routes/Routes";
 import { Transfers } from "../Transfers/Transfers";
 
-import { useDataContext } from "../../DataContext";
+import { useDataContext } from "../../context/DataContext";
 
 import "./RoutesDisplay.scss";
 
 export const RoutesDisplay = () => {
-	const state = useDataContext();
-	const date = new Date();
+  const state = useDataContext();
+  const date = new Date();
 
-	return (
-		<div className="display__route">
-			<RouteHeader type={state!.state.action} />
-			{state!.state.action === "STOP_END" ? (
-				<Routes type={state!.state.action} />
-			) : (
-				<Transfers />
-			)}
+  return (
+    <div className="display__route">
+      <RouteHeader type={state!.state.action} />
+      {state!.state.action === "STOP_END" ? (
+        <Routes type={state!.state.action} />
+      ) : (
+        <Transfers />
+      )}
 
-			<InfoPanel date={date} temp="+23°C" />
-		</div>
-	);
+      <InfoPanel date={date} temp="+23°C" />
+    </div>
+  );
 };
