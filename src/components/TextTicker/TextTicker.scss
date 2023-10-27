@@ -1,19 +1,20 @@
 .ticker {
-	position: absolute;
-	overflow: hidden;
-	width: 100%;
-	top: 50%;
-	left: 0;
-	text-align: center;
-	font-weight: 700;
-	font-size: 32px;
-	line-height: 32px;
-	white-space: nowrap;
-	padding: 10px 15px;
-	color: #971d1d;
-	background: rgba(204, 204, 204, 0.18);
-	span {
-		display: block;
-		width: 50%;
-	}
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 32px;
+  white-space: nowrap;
+  padding: 10px 15px;
+  color: #971d1d;
+  background: rgba(204, 204, 204, 0.18);
+  
+  span {
+    display: block;
+    width: 50%;
+  }
 }

@@ -1,7 +1,7 @@
 export type Stream = {
-	type: string;
-	url: string;
-	format: string;
-	label: string;
-	length: string;
+  type: string;
+  url: string;
+  format: string;
+  label: string;
+  length: string;
 };

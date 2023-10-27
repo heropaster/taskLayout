@@ -8,6 +8,7 @@ interface TransferItemProps {
   transfers: string[];
   name: StopNameT | undefined;
 }
+
 export const TransferItem: React.FC<TransferItemProps> = ({
   transport,
   transfers,

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useDataContext } from "../../DataContext";
+
+import { useDataContext } from "../../context/DataContext";
+
 import "./InfoPanel.scss";
 
 interface InfoPanelProps {

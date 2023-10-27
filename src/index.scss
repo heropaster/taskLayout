@@ -1,52 +1,55 @@
 @font-face {
-	font-family: "PT Root Regular";
-	src: url("assets/fonts/pt-root-ui_regular.woff");
+  font-family: "PT Root Regular";
+  src: url("assets/fonts/pt-root-ui_regular.woff");
 }
 @font-face {
-	font-family: "PT Root Medium";
-	src: url("assets/fonts/pt-root-ui_medium.woff");
+  font-family: "PT Root Medium";
+  src: url("assets/fonts/pt-root-ui_medium.woff");
 }
 @font-face {
-	font-family: "PT Root Bold";
-	src: url("assets/fonts/pt-root-ui_bold.woff2");
+  font-family: "PT Root Bold";
+  src: url("assets/fonts/pt-root-ui_bold.woff2");
 }
 :root {
-	--regular: "PT Root Regular", sans-serif;
-	--medium: "PT Root Medium", sans-serif;
-	--bold: "PT Root Bold", sans-serif;
-	--black: #001914;
+  --regular: "PT Root Regular", sans-serif;
+  --medium: "PT Root Medium", sans-serif;
+  --bold: "PT Root Bold", sans-serif;
+  --black: #001914;
 }
 *,
 *::before,
 *::after {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 body {
-	font-family: var(--regular);
-	color: var(--black);
-	background: rgba(204, 204, 204, 0.18);
+  font-family: var(--regular);
+  color: var(--black);
+  background: rgba(204, 204, 204, 0.18);
 }
+
 img {
-	width: 100%;
+  width: 100%;
 }
+
 #root {
-	height: 100vh;
-	display: flex;
-	align-items: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
+
 .display {
-	display: flex;
-	position: relative;
-	width: 100%;
-	max-height: 540px;
-	height: 100%;
-	background-color: #fff;
+  display: flex;
+  position: relative;
+  width: 100%;
+  max-height: 540px;
+  height: 100%;
+  background-color: #fff;
 }
 
 @media (min-width: 2781px) {
-	.display {
-		max-height: 768px;
-	}
+  .display {
+    max-height: 768px;
+  }
 }

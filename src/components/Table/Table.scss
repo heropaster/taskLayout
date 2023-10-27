@@ -1,132 +1,152 @@
 table {
-	overflow: hidden;
-	border-collapse: collapse;
-	thead {
-		border-bottom: 2px solid #334743;
-		th {
-			padding-left: 8px;
-			font-size: 20px;
-			height: 40px;
-			font-family: var(--medium);
-			font-weight: 500;
-			line-height: 100%;
-			color: #334743;
-			text-align: left;
-			&:nth-child(5),
-			&:nth-child(6) {
-				text-align: center;
-				padding-bottom: 14px;
-			}
-		}
-	}
-	tbody {
-		animation: rightSlide 0.3s forwards;
-		max-height: 442px;
-		tr {
-			max-height: 64px;
-			height: 64px;
-			border-top: 1px solid #d9d9d9;
-		}
-		td {
-			max-width: 304px;
-			max-height: 64px;
-			line-height: 100%;
-			color: #001914;
-			width: max-content;
-			padding: 8px;
-			font-size: 26px;
-			font-family: var(--medium);
-			font-weight: 500;
-			&.flight__time {
-				width: 80px;
-				font-family: var(--bold);
-				font-weight: 700;
-			}
-			&.flight__number {
-				padding: 13px 8px;
-				width: 120px;
-				div {
-					background: #b6e5ff;
-					color: #000;
-					font-family: var(--bold);
-					font-weight: 700;
-				}
-			}
-			&.flight__direction {
-				font-size: 30px;
-				padding: 0 8px;
-			}
-			&.flight__company {
-				width: 160px;
-			}
-			&.flight__airplane-type {
-				text-align: center;
-				width: 100px;
-				font-family: var(--bold);
-				font-weight: 700;
-			}
-			&.flight__status {
-				text-align: center;
-				width: 180px;
-				font-size: 22px;
-				border-radius: 2px;
-				&.arrived {
-					background-color: #c9ffd5;
-				}
-				&.delayed {
-					background-color: #ffcbcb;
-				}
-			}
-		}
-	}
+  overflow: hidden;
+  border-collapse: collapse;
+
+  thead {
+    border-bottom: 2px solid #334743;
+
+    th {
+      padding-left: 8px;
+      font-size: 20px;
+      height: 40px;
+      font-family: var(--medium);
+      font-weight: 500;
+      line-height: 100%;
+      color: #334743;
+      text-align: left;
+
+      &:nth-child(5),
+      &:nth-child(6) {
+        text-align: center;
+        padding-bottom: 14px;
+      }
+    }
+  }
+  tbody {
+    animation: rightSlide 0.3s forwards;
+    max-height: 442px;
+
+    tr {
+      max-height: 64px;
+      height: 64px;
+      border-top: 1px solid #d9d9d9;
+    }
+
+    td {
+      max-width: 304px;
+      max-height: 64px;
+      line-height: 100%;
+      color: #001914;
+      width: max-content;
+      padding: 8px;
+      font-size: 26px;
+      font-family: var(--medium);
+      font-weight: 500;
+
+      &.flight__time {
+        width: 80px;
+        font-family: var(--bold);
+        font-weight: 700;
+      }
+
+      &.flight__number {
+        padding: 13px 8px;
+        width: 120px;
+
+        div {
+          background: #b6e5ff;
+          color: #000;
+          font-family: var(--bold);
+          font-weight: 700;
+        }
+      }
+
+      &.flight__direction {
+        font-size: 30px;
+        padding: 0 8px;
+      }
+
+      &.flight__company {
+        width: 160px;
+      }
+
+      &.flight__airplane-type {
+        text-align: center;
+        width: 100px;
+        font-family: var(--bold);
+        font-weight: 700;
+      }
+
+      &.flight__status {
+        text-align: center;
+        width: 180px;
+        font-size: 22px;
+        border-radius: 2px;
+
+        &.arrived {
+          background-color: #c9ffd5;
+        }
+
+        &.delayed {
+          background-color: #ffcbcb;
+        }
+      }
+    }
+  }
 }
+
 @keyframes rightSlide {
-	from {
-		transform: translateX(100%);
-	}
-	to {
-		transform: translateX(0);
-	}
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 @media (min-width: 2781px) {
-	table {
-		width: 100%;
-		thead {
-			th {
-				font-size: 26px;
-			}
-		}
-		tbody {
-			max-height: 664px;
-			tr {
-				max-height: 93px;
-				height: 93px;
-			}
-			td {
-				&.flight__time {
-					font-size: 30px;
-				}
-				&.flight__number {
-					width: 140px;
-					font-size: 28px;
-					div {
-						padding: 5px;
-					}
-				}
-				&.flight__direction {
-					font-size: 32px;
-				}
-				&.flight__company {
-					font-size: 30px;
-				}
-				&.flight__airplane-type {
-					font-size: 30px;
-				}
-				&.flight__status {
-					font-size: 28px;
-				}
-			}
-		}
-	}
+  table {
+    width: 100%;
+    thead {
+      th {
+        font-size: 26px;
+      }
+    }
+    tbody {
+      max-height: 664px;
+      tr {
+        max-height: 93px;
+        height: 93px;
+      }
+      td {
+        &.flight__time {
+          font-size: 30px;
+        }
+
+        &.flight__number {
+          width: 140px;
+          font-size: 28px;
+          div {
+            padding: 5px;
+          }
+        }
+
+        &.flight__direction {
+          font-size: 32px;
+        }
+
+        &.flight__company {
+          font-size: 30px;
+        }
+
+        &.flight__airplane-type {
+          font-size: 30px;
+        }
+
+        &.flight__status {
+          font-size: 28px;
+        }
+      }
+    }
+  }
 }

@@ -16,10 +16,6 @@ export const RouteHeader: React.FC<RouteHeaderProps> = ({ type }) => {
     state?.state.route,
     state?.state.stops,
   ];
-  // const currentStop = state?.state.currentStop;
-  // const route = state?.state.route;
-  // const stops = state?.state.stops;
-
   return (
     <div
       key={type}

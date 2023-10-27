@@ -2,7 +2,9 @@ import { Reception } from "../Reception/Reception";
 import { Table } from "../Table/Table";
 import { Video } from "../Video/Video";
 import { Stream } from "../Stream/Stream";
-import { useDataContext } from "../../DataContext";
+
+import { useDataContext } from "../../context/DataContext";
+
 import "./Content.scss";
 
 export const Content = () => {

@@ -6,7 +6,7 @@ import { Content } from "./components/Content/Content";
 import { Video } from "./components/Video/Video";
 import { TextTicker } from "./components/TextTicker/TextTicker";
 
-import { useDataContext } from "./DataContext";
+import { useDataContext } from "./context/DataContext";
 import { endContent } from "./utils/contentEnd";
 
 export const App = () => {
