@@ -2,7 +2,7 @@ import { RouteHeader } from "./RouteHeader/RouteHeader";
 import { InfoPanel } from "../InfoPanel/InfoPanel";
 import { Routes } from "../Routes/Routes";
 import { Transfers } from "../Transfers/Transfers";
-import { useDataContext } from "../../DataContext";
+import { useDataContext } from "../../context/DataContext";
 import "./RoutesDisplay.scss";
 
 export const RoutesDisplay = () => {

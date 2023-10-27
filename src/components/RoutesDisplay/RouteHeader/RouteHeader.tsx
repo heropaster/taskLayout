@@ -2,7 +2,7 @@ import React from "react";
 import { StopName } from "../../StopName/StopName";
 import { RouteNumber } from "../../RouteNumber/RouteNumber";
 import { Path } from "../../Path/Path";
-import { useDataContext } from "../../../DataContext";
+import { useDataContext } from "../../../context/DataContext";
 import "./RouteHeader.scss";
 
 interface RouteHeaderProps {

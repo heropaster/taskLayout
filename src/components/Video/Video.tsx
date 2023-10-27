@@ -1,5 +1,5 @@
 import React from "react";
-import { useDataContext } from "../../DataContext";
+import { useDataContext } from "../../context/DataContext";
 import "./Video.scss";
 
 interface VideoProps {
