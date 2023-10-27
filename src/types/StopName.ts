@@ -1,4 +1,4 @@
 export type StopNameT = {
-	rus: string;
-	eng: string;
+  rus: string;
+  eng: string;
 };
