@@ -30,6 +30,7 @@ export const App = () => {
 		onMessage: (event) => {
 			const parsedMessage = JSON.parse(event.data);
 			switch (parsedMessage.type) {
+				// Инициализация маршрута
 				case "ROUTE": {
 					console.log(parsedMessage);
 					dispatch("UPDATE_STOPS", JSON.stringify(parsedMessage.stops));
@@ -42,7 +43,7 @@ export const App = () => {
 					dispatch("UPDATE_ROUTE", JSON.stringify(parsedMessage));
 					break;
 				}
-
+				// Остановка
 				case "STOP_END":
 				case "STOP_BEGIN":
 					dispatch("UPDATE_CONTENT_END", "");
@@ -56,7 +57,7 @@ export const App = () => {
 					}
 					dispatch("UPDATE_ACTION", parsedMessage.type);
 					break;
-
+				// Время до следующих остановок
 				case "STOP_TIMES":
 					dispatch("UPDATE_STOP_TIMES", JSON.stringify(parsedMessage.stops));
 					break;
@@ -69,15 +70,16 @@ export const App = () => {
 			console.log(parsedMessage);
 
 			switch (parsedMessage.type) {
+				// Скорость
 				case "SPEED":
 					dispatch("UPDATE_SPEED", String(parsedMessage.speed));
 					break;
-
+				// Обработка пакетов с картинкой/видео
 				case "PLAY_IMAGE":
 				case "PLAY_VIDEO":
 					dispatch("SWITCH_CONTENT", "assets");
 					dispatch("UPDATE_CONTENT", JSON.stringify(parsedMessage));
-
+					// Отправка сообщений по завершению проигрывания
 					endContent(
 						parsedMessage.length * 1000,
 						`http://${socketIP.trim()}:8080${parsedMessage.src}`,
@@ -106,23 +108,22 @@ export const App = () => {
 							}
 						});
 					break;
-
+				// Пакеты аэропорта
 				case "PULKOVO":
 					dispatch("SWITCH_CONTENT", "pulkovo");
-
 					dispatch("UPDATE_PULKOVO", JSON.stringify(parsedMessage));
 					break;
-
+				// Обработка пакета с видео на весь экран
 				case "PLAY_VIDEO_FULL":
 					setisFullVideo(true);
 					setVideoDuration(parsedMessage.duration);
 					break;
-
+				// Обработка бегущей строки
 				case "PLAY_TICKER":
 					setIsTicker(true);
 					setTickerText(parsedMessage.text);
 					break;
-
+				// Обработка стрима
 				case "PLAY_STREAM":
 					dispatch("SWITCH_CONTENT", "stream");
 					dispatch("UPDATE_STREAM", JSON.stringify(parsedMessage));

@@ -1,11 +1,13 @@
 import React from "react";
-
 import Ticker from "react-ticker";
+
 import "./TextTicker.scss";
+
 interface TextTickerProps {
 	text: string;
 	callback: () => void;
 }
+
 export const TextTicker: React.FC<TextTickerProps> = ({ text, callback }) => {
 	return (
 		<div className="ticker">

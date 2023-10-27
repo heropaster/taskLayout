@@ -12,18 +12,23 @@ interface RoutesProps {
 
 export const Routes: React.FC<RoutesProps> = ({ type }) => {
 	const state = useDataContext();
-	const stopTimes = state?.state.stopTimes;
-	const stops = state?.state.stops;
+	const [stopTimes, stops] = [state?.state.stopTimes, state?.state.stops];
+	// const stopTimes = state?.state.stopTimes;
+	// const stops = state?.state.stops;
 	const maxStops = type === "STOP_END" ? 4 : 3;
 
+	// Если последние остановки - для стилизации вертикальной линии
 	const isLast = stopTimes!.length <= 2 || stopTimes!.length === 3;
+	// Если конечная
 	const showLast = stopTimes!.length === 0 || stops?.length === 0;
-
 	if (showLast) return <div className="last">Конечная</div>;
+
+	// Отображение ограниченного числа остановок
 	const displayedStops = stops!.slice(
 		stopTimes![0].index,
 		stopTimes![0].index + maxStops
 	);
+
 	return (
 		<div
 			key={type}

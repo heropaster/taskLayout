@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import ReactPlayer from "react-player";
 
-import "./Stream.scss";
 import { useDataContext } from "../../DataContext";
+
+import "./Stream.scss";
+
 interface StreamProps {
 	src?: string;
 	length: string;
 }
+
 export const Stream: React.FC<StreamProps> = ({
 	src = "https://www.youtube.com/watch?v=jfKfPfyJRdk",
 	length,

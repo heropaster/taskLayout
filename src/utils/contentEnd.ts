@@ -8,6 +8,7 @@ export const endContent = (
 			return new Promise((resolve, reject) => {
 				const image = document.createElement("img");
 				image.src = src;
+
 				image.onload = () => {
 					resolve("Загрузилось");
 				};
@@ -15,7 +16,6 @@ export const endContent = (
 					reject(error);
 				};
 			})
-
 				.then(() => {
 					if (duration === +duration) {
 						return new Promise(function (resolve) {
@@ -33,6 +33,7 @@ export const endContent = (
 			return new Promise((resolve, reject) => {
 				const video = document.createElement("video");
 				video.src = src;
+
 				video.onloadeddata = () => {
 					resolve("Загрузилось");
 				};

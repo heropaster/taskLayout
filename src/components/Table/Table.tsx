@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from "react";
 
-import "./Table.scss";
+import { Flight } from "../../types/Flight";
+import { splitArray } from "../../utils/splitArray"; //Разбивает массив на подмассивы с заданным ограничением длины
+
 import arrival from "../../assets/icons/arrival.svg";
 import departure from "../../assets/icons/departure.svg";
-import { splitArray } from "../../utils/splitArray";
-import { Flight } from "../../types/Flight";
+import "./Table.scss";
+
 interface TableProps {
 	table: Flight[];
 	screen: string;
 	duration: number;
 }
 export const Table: React.FC<TableProps> = ({ table, screen, duration }) => {
+	const [currentPage, setCurrentPage] = useState(0);
+
 	const maxFlights = 7;
 	const pages = splitArray(table, maxFlights);
-	const [currentPage, setCurrentPage] = useState(0);
-	const pageDuration = Math.round((duration * 1000) / pages.length);
+	const pageDuration = Math.round((duration * 1000) / pages.length); //Время показа одной страницы
+
 	useEffect(() => {
 		const interval = setInterval(() => {
 			if (currentPage < pages.length - 1) {

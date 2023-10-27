@@ -11,6 +11,9 @@ interface InfoPanelProps {
 
 export const InfoPanel: React.FC<InfoPanelProps> = ({ date, temp }) => {
 	const [time, setTime] = useState(new Date());
+	const state = useDataContext();
+	const speed = state?.state.speed;
+
 	useEffect(() => {
 		const timerID = setInterval(() => {
 			setTime(new Date());
@@ -20,8 +23,7 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ date, temp }) => {
 			clearInterval(timerID); // Очистка таймера при размонтировании компонента
 		};
 	}, []);
-	const state = useDataContext();
-	const speed = state?.state.speed;
+
 	return (
 		<div className="panel">
 			<span>

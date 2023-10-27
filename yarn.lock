@@ -355,11 +355,6 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.51.0.tgz#6d419c240cfb2b66da37df230f7e7eef801c32fa"
   integrity sha512-HxjQ8Qn+4SI3/AFv6sOrDB+g6PpUTDwSJiQqOrnneEk8L71161srI9gjzzZvYVbzHiVg/BvcH95+cK/zfIt4pg==
 
-"@guna81/react-ticker@^3.4.1":
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/@guna81/react-ticker/-/react-ticker-3.4.1.tgz#98a6f58418ce826507a8bf3f60663bea0359d433"
-  integrity sha512-lE0p+4zLP6Js5w1BaJQWv8izlxGxmn2Sexevq9hGRBZ9hGqlrF4L1caoUuIwjPj8Sno7TnSfN3eZHTi9QN9ShQ==
-
 "@humanwhocodes/config-array@^0.11.11":
   version "0.11.11"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.11.tgz#88a04c570dbbc7dd943e4712429c3df09bc32844"

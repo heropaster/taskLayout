@@ -8,6 +8,7 @@ import "./Transfers.scss";
 export const Transfers = () => {
 	const state = useDataContext();
 	const stops = state?.state.stops;
+	
 	if (stops!.length > 0) {
 		const transfers = stops![state!.state.index].transfers;
 

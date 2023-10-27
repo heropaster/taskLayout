@@ -24,6 +24,7 @@ export const Video: React.FC<VideoProps> = ({
 			payload: payload,
 		});
 	};
+
 	const video = document.querySelector("video");
 
 	if (video) {

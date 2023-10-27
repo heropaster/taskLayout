@@ -9,8 +9,8 @@ import "./RoutesDisplay.scss";
 
 export const RoutesDisplay = () => {
 	const state = useDataContext();
-
 	const date = new Date();
+
 	return (
 		<div className="display__route">
 			<RouteHeader type={state!.state.action} />

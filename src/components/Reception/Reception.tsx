@@ -1,4 +1,5 @@
 import "./Reception.scss";
+
 interface ReceptionProps {
 	src: string;
 }

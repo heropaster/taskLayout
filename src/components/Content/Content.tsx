@@ -2,18 +2,23 @@ import { Reception } from "../Reception/Reception";
 import { Table } from "../Table/Table";
 import { Video } from "../Video/Video";
 import { Stream } from "../Stream/Stream";
-import "./Content.scss";
 
 import { useDataContext } from "../../DataContext";
+
+import "./Content.scss";
 
 export const Content = () => {
 	const socketIP = import.meta.env.VITE_SOCKET_URL;
 
 	const state = useDataContext();
-	const contentType = state?.state.contentType;
-	const content = state?.state.content;
-	const pulkovo = state?.state.pulkovo;
-	const stream = state?.state.stream;
+
+	const [contentType, content, pulkovo, stream] = [
+		state?.state.contentType,
+		state?.state.content,
+		state?.state.pulkovo,
+		state?.state.stream,
+	];
+
 	switch (contentType) {
 		case "assets":
 			switch (content?.type) {
