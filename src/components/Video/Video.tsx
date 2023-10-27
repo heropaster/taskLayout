@@ -17,19 +17,22 @@ export const Video: React.FC<VideoProps> = ({
 	callback,
 	duration,
 }) => {
-	console.log(duration);
 	const state = useDataContext();
+	const dispatch = (action: string, payload: string) => {
+		state?.dispatch({
+			type: action,
+			payload: payload,
+		});
+	};
 	const video = document.querySelector("video");
+
 	if (video) {
 		video.onloadeddata = () => {
 			video?.play();
 		};
 	}
 	const CallbackOnEnd = () => {
-		state?.dispatch({
-			type: "UPDATE_CONTENT_END",
-			payload: "true",
-		});
+		dispatch("UPDATE_CONTENT_END", "true");
 		if (callback) {
 			callback();
 		}

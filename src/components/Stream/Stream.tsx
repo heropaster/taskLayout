@@ -12,12 +12,16 @@ export const Stream: React.FC<StreamProps> = ({
 	length,
 }) => {
 	const state = useDataContext();
+	const dispatch = (action: string, payload: string) => {
+		state?.dispatch({
+			type: action,
+			payload: payload,
+		});
+	};
+
 	useEffect(() => {
 		const timeout = setTimeout(() => {
-			state?.dispatch({
-				type: "SWITCH_CONTENT",
-				payload: "assets",
-			});
+			dispatch("SWITCH_CONTENT", "assets");
 		}, Number(length) * 1000);
 
 		return () => {
@@ -28,7 +32,6 @@ export const Stream: React.FC<StreamProps> = ({
 	return (
 		<div className="stream-container">
 			<ReactPlayer
-				
 				url={src}
 				playing={true}
 				width="100%"

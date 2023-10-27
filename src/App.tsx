@@ -10,13 +10,20 @@ import { useDataContext } from "./DataContext";
 import { endContent } from "./utils/contentEnd";
 
 export const App = () => {
+	const socketIP = import.meta.env.VITE_SOCKET_URL;
+
 	const state = useDataContext();
+	const dispatch = (action: string, payload: string) => {
+		state?.dispatch({
+			type: action,
+			payload: payload,
+		});
+	};
+
 	const [isFullVideo, setisFullVideo] = useState(false);
 	const [isTicker, setIsTicker] = useState(false);
 	const [tickerText, setTickerText] = useState("");
-
 	const [videoDuration, setVideoDuration] = useState(0);
-	const socketIP = import.meta.env.VITE_SOCKET_URL;
 
 	const { lastMessage } = useWebSocket(`ws://${socketIP.trim()}:23245`, {
 		onOpen: () => console.log("opened"),
@@ -25,51 +32,33 @@ export const App = () => {
 			switch (parsedMessage.type) {
 				case "ROUTE": {
 					console.log(parsedMessage);
-					state?.dispatch({
-						type: "UPDATE_STOPS",
-						payload: JSON.stringify(parsedMessage.stops),
-					});
+					dispatch("UPDATE_STOPS", JSON.stringify(parsedMessage.stops));
 					if (parsedMessage.stops[0] != undefined) {
-						state?.dispatch({
-							type: "UPDATE_CURRENT_STOP",
-							payload: JSON.stringify(parsedMessage.stops[0]),
-						});
+						dispatch(
+							"UPDATE_CURRENT_STOP",
+							JSON.stringify(parsedMessage.stops[0])
+						);
 					}
-					state?.dispatch({
-						type: "UPDATE_ROUTE",
-						payload: JSON.stringify(parsedMessage),
-					});
-
+					dispatch("UPDATE_ROUTE", JSON.stringify(parsedMessage));
 					break;
 				}
 
 				case "STOP_END":
 				case "STOP_BEGIN":
-					state?.dispatch({
-						type: "UPDATE_CONTENT_END",
-						payload: "",
-					});
-					state?.dispatch({
-						type: "UPDATE_INDEX",
-						payload: String(parsedMessage.index),
-					});
+					dispatch("UPDATE_CONTENT_END", "");
+					dispatch("UPDATE_INDEX", String(parsedMessage.index));
+
 					if (state?.state.stops[parsedMessage.index] !== undefined) {
-						state?.dispatch({
-							type: "UPDATE_CURRENT_STOP",
-							payload: JSON.stringify(state?.state.stops[parsedMessage.index]),
-						});
+						dispatch(
+							"UPDATE_CURRENT_STOP",
+							JSON.stringify(state?.state.stops[parsedMessage.index])
+						);
 					}
-					state?.dispatch({
-						type: "UPDATE_ACTION",
-						payload: parsedMessage.type,
-					});
+					dispatch("UPDATE_ACTION", parsedMessage.type);
 					break;
 
 				case "STOP_TIMES":
-					state?.dispatch({
-						type: "UPDATE_STOP_TIMES",
-						payload: JSON.stringify(parsedMessage.stops),
-					});
+					dispatch("UPDATE_STOP_TIMES", JSON.stringify(parsedMessage.stops));
 					break;
 			}
 		},
@@ -78,23 +67,17 @@ export const App = () => {
 		if (lastMessage) {
 			const parsedMessage = JSON.parse(lastMessage.data);
 			console.log(parsedMessage);
+
 			switch (parsedMessage.type) {
 				case "SPEED":
-					state?.dispatch({
-						type: "UPDATE_SPEED",
-						payload: String(parsedMessage.speed),
-					});
+					dispatch("UPDATE_SPEED", String(parsedMessage.speed));
 					break;
+
 				case "PLAY_IMAGE":
 				case "PLAY_VIDEO":
-					state?.dispatch({
-						type: "SWITCH_CONTENT",
-						payload: "assets",
-					});
-					state?.dispatch({
-						type: "UPDATE_CONTENT",
-						payload: JSON.stringify(parsedMessage),
-					});
+					dispatch("SWITCH_CONTENT", "assets");
+					dispatch("UPDATE_CONTENT", JSON.stringify(parsedMessage));
+
 					endContent(
 						parsedMessage.length * 1000,
 						`http://${socketIP.trim()}:8080${parsedMessage.src}`,
@@ -122,35 +105,27 @@ export const App = () => {
 								console.log("Отправил");
 							}
 						});
+					break;
 
-					break;
 				case "PULKOVO":
-					state?.dispatch({
-						type: "SWITCH_CONTENT",
-						payload: "pulkovo",
-					});
-					state?.dispatch({
-						type: "UPDATE_PULKOVO",
-						payload: JSON.stringify(parsedMessage),
-					});
+					dispatch("SWITCH_CONTENT", "pulkovo");
+
+					dispatch("UPDATE_PULKOVO", JSON.stringify(parsedMessage));
 					break;
+
 				case "PLAY_VIDEO_FULL":
 					setisFullVideo(true);
 					setVideoDuration(parsedMessage.duration);
 					break;
+
 				case "PLAY_TICKER":
 					setIsTicker(true);
 					setTickerText(parsedMessage.text);
 					break;
+
 				case "PLAY_STREAM":
-					state?.dispatch({
-						type: "SWITCH_CONTENT",
-						payload: "stream",
-					});
-					state?.dispatch({
-						type: "UPDATE_STREAM",
-						payload: JSON.stringify(parsedMessage),
-					});
+					dispatch("SWITCH_CONTENT", "stream");
+					dispatch("UPDATE_STREAM", JSON.stringify(parsedMessage));
 			}
 		}
 	}, [lastMessage]);
