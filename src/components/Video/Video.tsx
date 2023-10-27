@@ -1,58 +1,49 @@
 import React from "react";
-
 import { useDataContext } from "../../DataContext";
-
 import "./Video.scss";
 
 interface VideoProps {
-	src?: string;
-	type: string;
-	callback?: () => void;
-	duration?: number;
+  src: string;
+  type: string;
+  callback?: () => void;
+  duration?: number;
 }
 
 export const Video: React.FC<VideoProps> = ({
-	src = "/sdcard/content/video/showing_plan/4db241d2fb1e7c04a6ca267b9c1685d6.mp4",
-	type,
-	callback,
-	duration,
+  src,
+  type,
+  callback,
+  duration,
 }) => {
-	const state = useDataContext();
-	const dispatch = (action: string, payload: string) => {
-		state?.dispatch({
-			type: action,
-			payload: payload,
-		});
-	};
+  const socketIP = import.meta.env.VITE_SOCKET_URL;
 
-	const video = document.querySelector("video");
+  const state = useDataContext();
+  const dispatch = (action: string, payload: string) => {
+    state?.dispatch({
+      type: action,
+      payload: payload,
+    });
+  };
 
-	if (video) {
-		video.onloadeddata = () => {
-			video?.play();
-		};
-	}
-	const CallbackOnEnd = () => {
-		dispatch("UPDATE_CONTENT_END", "true");
-		if (callback) {
-			callback();
-		}
-	};
-	if (duration) {
-		setTimeout(() => {
-			CallbackOnEnd();
-		}, duration);
-	}
-	return (
-		<div className={`video-container ${type === "full" ? "full" : ""}`}>
-			<video
-				autoPlay={true}
-				muted={true}
-				onEnded={() => CallbackOnEnd()}
-				width={"100%"}
-			>
-				<source src={`http://192.168.100.194:8080${src}`} type="video/mp4" />
-			</video>
-		</div>
-	);
+  const callbackOnEnd = () => {
+    dispatch("UPDATE_CONTENT_END", "true");
+    callback?.();
+  };
+  if (duration) {
+    setTimeout(() => {
+      callbackOnEnd();
+    }, duration);
+  }
+  return (
+    <div className={`video-container ${type === "full" ? "full" : ""}`}>
+      <video
+        autoPlay={true}
+        muted={true}
+        onEnded={() => callbackOnEnd()}
+        width={"100%"}
+      >
+        <source src={`http://${socketIP.trim()}:8080${src}`} type="video/mp4" />
+      </video>
+    </div>
+  );
 };
