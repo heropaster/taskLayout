@@ -21,6 +21,7 @@ export const App = () => {
   };
 
   const [isFullVideo, setisFullVideo] = useState(false);
+  const [fullVideoSrc, setFullVideoSrc] = useState("");
   const [isTicker, setIsTicker] = useState(false);
   const [tickerText, setTickerText] = useState("");
   const [videoDuration, setVideoDuration] = useState(0);
@@ -122,6 +123,7 @@ export const App = () => {
         case "PLAY_VIDEO_FULL": {
           setisFullVideo(true);
           setVideoDuration(parsedMessage.duration);
+          setFullVideoSrc(parsedMessage.src);
           break;
         }
         // Обработка бегущей строки
@@ -145,6 +147,7 @@ export const App = () => {
       <Content />
       {isFullVideo && (
         <Video
+          src={fullVideoSrc}
           type="full"
           callback={() => setisFullVideo(false)}
           duration={videoDuration * 1000}

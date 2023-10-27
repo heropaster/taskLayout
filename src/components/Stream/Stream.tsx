@@ -22,9 +22,7 @@ export const Stream: React.FC<StreamProps> = ({
 
   useEffect(() => {
     const timeout = setTimeout(
-      () => {
-        dispatch("SWITCH_CONTENT", "assets");
-      },
+      () => dispatch("SWITCH_CONTENT", "assets"),
       Number(length) * 1000,
     );
 

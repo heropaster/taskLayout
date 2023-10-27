@@ -4,7 +4,7 @@ import "./StopName.scss";
 
 interface StopNameProps {
   type: string | undefined;
-  name: { rus?: string; eng?: string };
+  name: StopNameT;
 }
 
 export const StopName: React.FC<StopNameProps> = ({ type, name }) => (
