@@ -1,7 +1,6 @@
-import React from "react";
-import { StopName } from "../StopName/StopName";
-import { ArrivalTime } from "../ArrivalTIme/ArrivalTime";
-import { StopNameT } from "../../types/StopName";
+import { ArrivalTime } from "components/ArrivalTIme/ArrivalTime";
+import { StopName } from "components/StopName/StopName";
+import { StopNameT } from "types/StopName";
 import "./Stop.scss";
 
 interface StopProps {

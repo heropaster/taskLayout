@@ -1,8 +1,7 @@
-import React from "react";
-import { StopName } from "../../StopName/StopName";
-import { RouteNumber } from "../../RouteNumber/RouteNumber";
-import { Path } from "../../Path/Path";
-import { useDataContext } from "../../../context/DataContext";
+import { Path } from "components/Path/Path";
+import { RouteNumber } from "components/RouteNumber/RouteNumber";
+import { StopName } from "components/StopName/StopName";
+import { useDataContext } from "context/DataContext";
 import "./RouteHeader.scss";
 
 interface RouteHeaderProps {

@@ -1,6 +1,5 @@
-import React from "react";
-import { RouteNumber } from "../../RouteNumber/RouteNumber";
-import { StopNameT } from "../../../types/StopName";
+import { RouteNumber } from "components/RouteNumber/RouteNumber";
+import { StopNameT } from "types/StopName";
 import "./TransferItem.scss";
 
 interface TransferItemProps {

@@ -1,6 +1,5 @@
-import React from "react";
-import { useDataContext } from "../../context/DataContext";
-import { Stop } from "../Stop/Stop";
+import { Stop } from "components/Stop/Stop";
+import { useDataContext } from "context/DataContext";
 import "./Routes.scss";
 
 interface RoutesProps {

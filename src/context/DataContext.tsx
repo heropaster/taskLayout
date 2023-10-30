@@ -1,10 +1,10 @@
-import React, { createContext, useContext, ReactNode, useReducer } from "react";
-import type { Stop } from "../types/Stop";
-import type { Route } from "../types/Route";
-import type { StopTime } from "../types/StopTime";
-import type { Content } from "../types/Content";
-import type { PulkovoT } from "../types/PulkovoT";
-import type { Stream } from "../types/Stream";
+import { createContext, ReactNode, useReducer, useContext } from "react";
+import { Content } from "types/Content";
+import { PulkovoT } from "types/PulkovoT";
+import { Route } from "types/Route";
+import { Stop } from "types/Stop";
+import { StopTime } from "types/StopTime";
+import { Stream } from "types/Stream";
 
 type ContextActions = {
   type: string;

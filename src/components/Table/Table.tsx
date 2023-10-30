@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { splitArray } from "../../utils/splitArray"; //Разбивает массив на подмассивы с заданным ограничением длины
-import { Flight } from "../../types/Flight";
+import { useState, useEffect } from "react";
+import { Flight } from "types/Flight";
+import { splitArray } from "utils/splitArray";
 import arrival from "../../assets/icons/arrival.svg";
 import departure from "../../assets/icons/departure.svg";
 import "./Table.scss";

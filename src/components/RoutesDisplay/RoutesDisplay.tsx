@@ -1,8 +1,8 @@
+import { InfoPanel } from "components/InfoPanel/InfoPanel";
+import { Routes } from "components/Routes/Routes";
+import { Transfers } from "components/Transfers/Transfers";
+import { useDataContext } from "context/DataContext";
 import { RouteHeader } from "./RouteHeader/RouteHeader";
-import { InfoPanel } from "../InfoPanel/InfoPanel";
-import { Routes } from "../Routes/Routes";
-import { Transfers } from "../Transfers/Transfers";
-import { useDataContext } from "../../context/DataContext";
 import "./RoutesDisplay.scss";
 
 export const RoutesDisplay = () => {

@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import { useDataContext } from "context/DataContext";
+import { useEffect } from "react";
 import ReactPlayer from "react-player";
-import { useDataContext } from "../../context/DataContext";
 import "./Stream.scss";
 
 interface StreamProps {

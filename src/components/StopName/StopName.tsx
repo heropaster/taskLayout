@@ -1,5 +1,4 @@
-import React from "react";
-import { StopNameT } from "../../types/StopName";
+import { StopNameT } from "types/StopName";
 import "./StopName.scss";
 
 interface StopNameProps {

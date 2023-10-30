@@ -1,8 +1,8 @@
-import { Reception } from "../Reception/Reception";
-import { Table } from "../Table/Table";
-import { Video } from "../Video/Video";
-import { Stream } from "../Stream/Stream";
-import { useDataContext } from "../../context/DataContext";
+import { Reception } from "components/Reception/Reception";
+import { Stream } from "components/Stream/Stream";
+import { Table } from "components/Table/Table";
+import { Video } from "components/Video/Video";
+import { useDataContext } from "context/DataContext";
 import "./Content.scss";
 
 export const Content = () => {
