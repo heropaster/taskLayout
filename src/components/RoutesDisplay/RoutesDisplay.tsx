@@ -7,18 +7,16 @@ import "./RoutesDisplay.scss";
 
 export const RoutesDisplay = () => {
   const state = useDataContext();
-  const date = new Date();
 
   return (
     <div className="display__route">
-      <RouteHeader type={state!.state.action} />
+      <RouteHeader />
       {state!.state.action === "STOP_END" ? (
         <Routes type={state!.state.action} />
       ) : (
         <Transfers />
       )}
-
-      <InfoPanel date={date} temp="+23°C" />
+      <InfoPanel />
     </div>
   );
 };

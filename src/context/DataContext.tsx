@@ -13,6 +13,7 @@ type ContextActions = {
 
 interface ContextState {
   speed: string;
+  temp: string;
   index: number;
   action: string;
   currentStop: Stop | undefined;
@@ -37,6 +38,8 @@ function dataReducer(
   switch (action.type) {
     case "UPDATE_SPEED":
       return { ...state, speed: action.payload };
+    case "UPDATE_TEMP":
+      return { ...state, temp: action.payload };
     case "UPDATE_INDEX":
       return { ...state, index: Number(action.payload) };
     case "UPDATE_ACTION":
@@ -71,6 +74,7 @@ export const DataContextProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [state, dispatch] = useReducer(dataReducer, {
     speed: "",
+    temp: "",
     index: 0,
     action: "",
     currentStop: undefined,
