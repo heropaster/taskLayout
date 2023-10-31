@@ -66,8 +66,32 @@ function dataReducer(
       return state;
   }
 }
-
-const DataContext = createContext<Context | undefined>(undefined);
+const initialState: ContextState = {
+  speed: "",
+  temp: "",
+  index: 0,
+  action: "",
+  currentStop: undefined,
+  route: undefined,
+  stops: [],
+  stopTimes: [],
+  content: undefined,
+  contentType: "assets",
+  pulkovo: undefined,
+  isContentEnd: false,
+  // Заглушка для теста
+  stream: {
+    type: "PLAY_STREAM",
+    url: "https://www.youtube.com/watch?v=4xDzrJKXOOY",
+    format: "aasdasd",
+    label: "asdasd",
+    length: "15",
+  },
+};
+const DataContext = createContext<Context>({
+  state: initialState,
+  dispatch: () => {},
+});
 
 export const DataContextProvider: React.FC<{ children: ReactNode }> = ({
   children,

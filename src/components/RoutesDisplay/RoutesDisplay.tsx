@@ -6,16 +6,14 @@ import { RouteHeader } from "./RouteHeader/RouteHeader";
 import "./RoutesDisplay.scss";
 
 export const RoutesDisplay = () => {
-  const state = useDataContext();
-
+  // const state = useDataContext();
+  const {
+    state: { action },
+  } = useDataContext();
   return (
     <div className="display__route">
       <RouteHeader />
-      {state!.state.action === "STOP_END" ? (
-        <Routes type={state!.state.action} />
-      ) : (
-        <Transfers />
-      )}
+      {action === "STOP_END" ? <Routes type={action} /> : <Transfers />}
       <InfoPanel />
     </div>
   );

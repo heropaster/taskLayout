@@ -11,8 +11,10 @@ interface StopProps {
 }
 
 export const Stop: React.FC<StopProps> = ({ name, time, isFirst }) => {
-  const state = useDataContext();
-  const route = state?.state.route;
+  const {
+    state: { route },
+  } = useDataContext();
+
   const styles = {
     first: {
       background: route?.color,

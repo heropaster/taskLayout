@@ -4,8 +4,9 @@ import "./InfoPanel.scss";
 
 export const InfoPanel = () => {
   const [time, setTime] = useState(new Date());
-  const state = useDataContext();
-  const [temp, speed] = [state?.state.temp, state?.state.speed];
+  const {
+    state: { temp, speed },
+  } = useDataContext();
   const date = new Date();
 
   useEffect(() => {

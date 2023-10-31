@@ -5,13 +5,10 @@ import { useDataContext } from "context/DataContext";
 import "./RouteHeader.scss";
 
 export const RouteHeader = () => {
-  const state = useDataContext();
-  const [currentStop, route, stops, action] = [
-    state?.state.currentStop,
-    state?.state.route,
-    state?.state.stops,
-    state?.state.action,
-  ];
+  const {
+    state: { currentStop, route, stops, action },
+  } = useDataContext();
+
   const styles = {
     header: {
       background: route?.color,
