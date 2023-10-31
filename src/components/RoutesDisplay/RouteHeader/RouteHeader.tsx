@@ -15,9 +15,16 @@ export const RouteHeader: React.FC<RouteHeaderProps> = ({ type }) => {
     state?.state.route,
     state?.state.stops,
   ];
+  const styles = {
+    header: {
+      background: route?.color,
+      color: route?.fontColor,
+    },
+  };
   return (
     <div
       key={type}
+      style={type === "STOP_BEGIN" ? styles.header : undefined}
       className={`header ${
         type === "STOP_BEGIN" ? "header--stopped" : "header--moving"
       }`}

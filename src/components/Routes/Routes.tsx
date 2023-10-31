@@ -29,6 +29,7 @@ export const Routes: React.FC<RoutesProps> = ({ type }) => {
         <Stop
           key={stop.index}
           time={String(state?.state.stopTimes[index].time)}
+          isFirst={index === 0}
           name={{ rus: stop.nameRus, eng: stop.nameEng }}
         />
       ))}
