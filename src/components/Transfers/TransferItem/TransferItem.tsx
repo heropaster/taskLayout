@@ -27,9 +27,16 @@ export const TransferItem: React.FC<TransferItemProps> = ({
             transfers.length > 14 ? "scroll" : ""
           }`}
         >
-          {transfers.map((item, index) => (
-            <RouteNumber src={item} key={index} />
-          ))}
+          <div>
+            {transfers.map((item, index) => (
+              <RouteNumber src={item} key={index} />
+            ))}
+          </div>
+          <div>
+            {transfers.map((item, index) => (
+              <RouteNumber src={item} key={index} />
+            ))}
+          </div>
         </div>
         {name && (
           <div className="name-container">
