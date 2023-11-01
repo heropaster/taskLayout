@@ -7,8 +7,9 @@ interface RoutesProps {
 }
 
 export const Routes: React.FC<RoutesProps> = ({ type }) => {
-  const state = useDataContext();
-  const [stopTimes, stops] = [state?.state.stopTimes, state?.state.stops];
+  const {
+    state: { stopTimes, stops },
+  } = useDataContext();
   const maxStops = type === "STOP_END" ? 4 : 3;
 
   // Если последние остановки - для стилизации вертикальной линии
@@ -28,7 +29,8 @@ export const Routes: React.FC<RoutesProps> = ({ type }) => {
       {displayedStops.map((stop, index) => (
         <Stop
           key={stop.index}
-          time={String(state?.state.stopTimes[index].time)}
+          time={String(stopTimes[index].time)}
+          isFirst={index === 0}
           name={{ rus: stop.nameRus, eng: stop.nameEng }}
         />
       ))}

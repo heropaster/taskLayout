@@ -4,14 +4,15 @@ import { TransferItem } from "./TransferItem/TransferItem";
 import "./Transfers.scss";
 
 export const Transfers = () => {
-  const state = useDataContext();
-  const stops = state?.state.stops;
+  const {
+    state: { stops, index },
+  } = useDataContext();
 
   if (stops!.length > 0) {
-    const transfers = stops![state!.state.index].transfers;
+    const transfers = stops![index].transfers;
 
     return (
-      <div key={state!.state.index} className="transfers">
+      <div key={index} className="transfers">
         {transfers.length === 0 && (
           <div className="noTransfers">Пересадок нет</div>
         )}
@@ -23,8 +24,8 @@ export const Transfers = () => {
             name={
               index === 2
                 ? {
-                    rus: stops![state!.state.index].nameRus,
-                    eng: stops![state!.state.index].nameEng,
+                    rus: stops![index].nameRus,
+                    eng: stops![index].nameEng,
                   }
                 : undefined
             }

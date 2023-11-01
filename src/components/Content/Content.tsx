@@ -8,14 +8,9 @@ import "./Content.scss";
 export const Content = () => {
   const socketIP = import.meta.env.VITE_SOCKET_URL;
 
-  const state = useDataContext();
-
-  const [contentType, content, pulkovo, stream] = [
-    state?.state.contentType,
-    state?.state.content,
-    state?.state.pulkovo,
-    state?.state.stream,
-  ];
+  const {
+    state: { content, contentType, pulkovo, stream },
+  } = useDataContext();
 
   switch (contentType) {
     case "assets":

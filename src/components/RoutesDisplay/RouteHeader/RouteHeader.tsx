@@ -4,25 +4,26 @@ import { StopName } from "components/StopName/StopName";
 import { useDataContext } from "context/DataContext";
 import "./RouteHeader.scss";
 
-interface RouteHeaderProps {
-  type: string;
-}
+export const RouteHeader = () => {
+  const {
+    state: { currentStop, route, stops, action },
+  } = useDataContext();
 
-export const RouteHeader: React.FC<RouteHeaderProps> = ({ type }) => {
-  const state = useDataContext();
-  const [currentStop, route, stops] = [
-    state?.state.currentStop,
-    state?.state.route,
-    state?.state.stops,
-  ];
+  const styles = {
+    header: {
+      background: route?.color,
+      color: route?.fontColor,
+    },
+  };
   return (
     <div
-      key={type}
+      key={action}
+      style={action === "STOP_BEGIN" ? styles.header : undefined}
       className={`header ${
-        type === "STOP_BEGIN" ? "header--stopped" : "header--moving"
+        action === "STOP_BEGIN" ? "header--stopped" : "header--moving"
       }`}
     >
-      {type === "STOP_BEGIN" ? (
+      {action === "STOP_BEGIN" ? (
         stops!.length > 0 && (
           <StopName
             type="header"

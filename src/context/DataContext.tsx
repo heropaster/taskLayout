@@ -13,6 +13,7 @@ type ContextActions = {
 
 interface ContextState {
   speed: string;
+  temp: string;
   index: number;
   action: string;
   currentStop: Stop | undefined;
@@ -37,6 +38,8 @@ function dataReducer(
   switch (action.type) {
     case "UPDATE_SPEED":
       return { ...state, speed: action.payload };
+    case "UPDATE_TEMP":
+      return { ...state, temp: action.payload };
     case "UPDATE_INDEX":
       return { ...state, index: Number(action.payload) };
     case "UPDATE_ACTION":
@@ -63,14 +66,39 @@ function dataReducer(
       return state;
   }
 }
-
-const DataContext = createContext<Context | undefined>(undefined);
+const initialState: ContextState = {
+  speed: "",
+  temp: "",
+  index: 0,
+  action: "",
+  currentStop: undefined,
+  route: undefined,
+  stops: [],
+  stopTimes: [],
+  content: undefined,
+  contentType: "assets",
+  pulkovo: undefined,
+  isContentEnd: false,
+  // Заглушка для теста
+  stream: {
+    type: "PLAY_STREAM",
+    url: "https://www.youtube.com/watch?v=4xDzrJKXOOY",
+    format: "aasdasd",
+    label: "asdasd",
+    length: "15",
+  },
+};
+const DataContext = createContext<Context>({
+  state: initialState,
+  dispatch: () => {},
+});
 
 export const DataContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [state, dispatch] = useReducer(dataReducer, {
     speed: "",
+    temp: "",
     index: 0,
     action: "",
     currentStop: undefined,

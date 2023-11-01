@@ -22,14 +22,19 @@ export const TransferItem: React.FC<TransferItemProps> = ({
         alt="transport"
       />
       <div className="stop-transfers">
-        <div
-          className={`transfers-content ${
-            transfers.length > 14 ? "scroll" : ""
-          }`}
-        >
-          {transfers.map((item, index) => (
-            <RouteNumber src={item} key={index} />
-          ))}
+        <div className={`${transfers.length > 14 ? "scroll" : ""}`}>
+          <div className="transfers-content">
+            {transfers.map((item, index) => (
+              <RouteNumber src={item} key={index} />
+            ))}
+          </div>
+          {transfers.length > 14 && (
+            <div className="transfers-content">
+              {transfers.map((item, index) => (
+                <RouteNumber src={item} key={index} />
+              ))}
+            </div>
+          )}
         </div>
         {name && (
           <div className="name-container">

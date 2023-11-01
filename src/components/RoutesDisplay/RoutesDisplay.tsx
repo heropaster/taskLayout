@@ -6,19 +6,15 @@ import { RouteHeader } from "./RouteHeader/RouteHeader";
 import "./RoutesDisplay.scss";
 
 export const RoutesDisplay = () => {
-  const state = useDataContext();
-  const date = new Date();
-
+  // const state = useDataContext();
+  const {
+    state: { action },
+  } = useDataContext();
   return (
     <div className="display__route">
-      <RouteHeader type={state!.state.action} />
-      {state!.state.action === "STOP_END" ? (
-        <Routes type={state!.state.action} />
-      ) : (
-        <Transfers />
-      )}
-
-      <InfoPanel date={date} temp="+23°C" />
+      <RouteHeader />
+      {action === "STOP_END" ? <Routes type={action} /> : <Transfers />}
+      <InfoPanel />
     </div>
   );
 };

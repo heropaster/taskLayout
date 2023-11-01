@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useWebSocket from "react-use-websocket";
 
 import { RoutesDisplay } from "./components/RoutesDisplay/RoutesDisplay";
@@ -26,14 +26,14 @@ export const App = () => {
   const [tickerText, setTickerText] = useState("");
   const [videoDuration, setVideoDuration] = useState(0);
 
-  const { lastMessage } = useWebSocket(WS_URL, {
+  useWebSocket(WS_URL, {
     onOpen: () => console.log("opened"),
     onMessage: (event) => {
       const parsedMessage = JSON.parse(event.data);
+      console.log(parsedMessage);
       switch (parsedMessage.type) {
         // Инициализация маршрута
         case "ROUTE": {
-          console.log(parsedMessage);
           dispatch("UPDATE_STOPS", JSON.stringify(parsedMessage.stops));
           if (parsedMessage.stops[0] != undefined) {
             dispatch(
@@ -64,18 +64,13 @@ export const App = () => {
           dispatch("UPDATE_STOP_TIMES", JSON.stringify(parsedMessage.stops));
           break;
         }
-      }
-    },
-  });
-  useEffect(() => {
-    if (lastMessage) {
-      const parsedMessage = JSON.parse(lastMessage.data);
-      console.log(parsedMessage);
-
-      switch (parsedMessage.type) {
         // Скорость
         case "SPEED": {
           dispatch("UPDATE_SPEED", String(parsedMessage.speed));
+          break;
+        }
+        case "TEMPERATURE": {
+          dispatch("UPDATE_TEMPERATURE", String(parsedMessage.temperature));
           break;
         }
         // Обработка пакетов с картинкой/видео
@@ -138,8 +133,8 @@ export const App = () => {
           dispatch("UPDATE_STREAM", JSON.stringify(parsedMessage));
         }
       }
-    }
-  }, [lastMessage]);
+    },
+  });
 
   return (
     <div className="display">

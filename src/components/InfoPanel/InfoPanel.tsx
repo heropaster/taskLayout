@@ -2,15 +2,12 @@ import { useDataContext } from "context/DataContext";
 import { useState, useEffect } from "react";
 import "./InfoPanel.scss";
 
-interface InfoPanelProps {
-  date: Date;
-  temp: string;
-}
-
-export const InfoPanel: React.FC<InfoPanelProps> = ({ date, temp }) => {
+export const InfoPanel = () => {
   const [time, setTime] = useState(new Date());
-  const state = useDataContext();
-  const speed = state?.state.speed;
+  const {
+    state: { temp, speed },
+  } = useDataContext();
+  const date = new Date();
 
   useEffect(() => {
     const timerID = setInterval(() => setTime(new Date()), 2000); // Обновление времени
@@ -33,8 +30,8 @@ export const InfoPanel: React.FC<InfoPanelProps> = ({ date, temp }) => {
           day: "numeric",
         })}
       </span>
-      <span>{temp}</span>
-      <span>{speed} км/ч</span>
+      {temp && <span>{temp}°C</span>}
+      {speed && <span>{speed} км/ч</span>}
     </div>
   );
 };
